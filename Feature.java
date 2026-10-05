@@ -31,10 +31,6 @@ public class Feature implements Component {
     @Override
     public void setParent(Component Parent) {this.parent = (Feature) Parent;}
 
-    @Override
-    public void activation() {
-
-    }
 
     public String getChildrenType() {return childrenType;}
 
@@ -42,8 +38,10 @@ public class Feature implements Component {
     public void desactivation(){
         if (this.isMandatory()){
             System.out.println("ne peut pas être désactivé");
+            return;
         }else if (this.activate) {
             System.out.println("Déjà désactivé");
+            return;
         }
         if (mandatory && parent != null && parent.isActive()) {
             System.out.println(name + " est obligatoire, désactivez " + parent.getName() + " d'abord");
@@ -53,19 +51,22 @@ public class Feature implements Component {
         this.activate = false;
     }
 
-
-    public void activate(){
+    @Override
+    public void activation(){
         if (this.activate) {
             System.out.println("Déjà activé");
+            return;
         }
         if (parent != null && !parent.isActive()) {
             System.out.println(name + " : activez d'abord " + parent.getName());
             return;
         }
-        if (this.parent != null && this.parent.childrenType.equals("or")){
+        if (this.parent != null && this.parent.childrenType.equals("alternative")){
             for (Component c : parent.children){
-                if (c.isActive() && c != this ){System.out.println("une autre feature est déjà activé");}
-                return;
+                if (c.isActive() && c != this ){
+                    System.out.println(c.getName() + " est déjà activé");
+                    return;
+                }
             }
         }
 
@@ -84,5 +85,20 @@ public class Feature implements Component {
             this.children.add(child);
             child.setParent(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder model = new StringBuilder();
+        model.append(this.getName()).append(" [");
+        for (Component c : children) {
+            if (!c.getChildren().isEmpty()) {
+                model.append(" ").append(c.toString());
+            }else{
+                model.append(" ").append(c.getName());
+            }
+        }
+        model.append(" ]");
+        return model.toString();
     }
 }

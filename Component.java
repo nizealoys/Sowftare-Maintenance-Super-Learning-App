@@ -12,4 +12,6 @@ public interface Component{
     void add(Component c);
 
     void setParent(Component c);
+
+    String toString();
 }
