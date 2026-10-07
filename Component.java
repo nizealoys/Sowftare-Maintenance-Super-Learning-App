@@ -7,8 +7,8 @@ public interface Component{
     Component getParent();
     List<Component> getChildren();
 
-    void desactivation();
-    void activation();
+    boolean desactivation();
+    boolean activation();
     void add(Component c);
 
     void setParent(Component c);

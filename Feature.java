@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Feature implements Component {
+public abstract class Feature implements Component {
     private final String name;
     private final boolean mandatory;
     private boolean activate;
@@ -35,42 +35,40 @@ public class Feature implements Component {
     public String getChildrenType() {return childrenType;}
 
     @Override
-    public void desactivation(){
+    public boolean desactivation(){
         if (this.isMandatory()){
             System.out.println("ne peut pas être désactivé");
-            return;
-        }else if (this.activate) {
+            return this.isActive();
+        }else if (!this.activate) {
             System.out.println("Déjà désactivé");
-            return;
-        }
-        if (mandatory && parent != null && parent.isActive()) {
-            System.out.println(name + " est obligatoire, désactivez " + parent.getName() + " d'abord");
-            return;
+            return this.isActive();
         }
         for (Component c : children) c.desactivation();
         this.activate = false;
+        return this.isActive();
     }
 
     @Override
-    public void activation(){
+    public boolean activation(){
         if (this.activate) {
             System.out.println("Déjà activé");
-            return;
+            return this.isActive();
         }
         if (parent != null && !parent.isActive()) {
             System.out.println(name + " : activez d'abord " + parent.getName());
-            return;
+            return this.isActive();
         }
         if (this.parent != null && this.parent.childrenType.equals("alternative")){
             for (Component c : parent.children){
                 if (c.isActive() && c != this ){
                     System.out.println(c.getName() + " est déjà activé");
-                    return;
+                    return this.isActive();
                 }
             }
         }
 
         this.activate = true;
+        return this.isActive();
     }
 
     @Override

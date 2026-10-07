@@ -2,5 +2,4 @@ cat > .gitignore << 'EOF'
 .idea/
 out/
 *.iml
-*.class
 EOF
