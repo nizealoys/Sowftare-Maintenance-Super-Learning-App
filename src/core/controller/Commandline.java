@@ -4,7 +4,6 @@ import core.observer.ObserverController;
 import core.observer.ObserverView;
 import core.observer.SubjectController;
 import core.view.Viewer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -63,6 +62,7 @@ public  class Commandline implements SubjectController, ObserverController {
                 case "stop":
                     in.close();
                     System.exit(0);
+                    break;
 
                 default:
                     notifyObserver(line);

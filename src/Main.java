@@ -1,69 +1,79 @@
-import core.model.CompositeBuilder;
-import core.model.Feature;
-import feature.achievement.controller.AchievementController;
-import feature.achievement.model.Achievement;
-import feature.achievement.model.AchievementElement;
-import feature.achievement.service.AchievementFacade;
-import java.util.ArrayList;
+import core.controller.Commandline;
 
 public class Main {
     public static void main(String[] args) {
-        CompositeBuilder compositeBuilder = CompositeBuilder.getInstance();
-        System.out.println(compositeBuilder.toString());
-       
-        Feature feature = compositeBuilder.getComposite().getRoot();
-        ArrayList<Feature> features = feature.getChildren();
-        
-        System.out.println("Root feature: " + feature.isActive());
-        System.out.println("Leaf feature: " + features.get(0).isActive());
-    
-        AchievementFacade facade = new AchievementFacade(compositeBuilder.getComposite());
-        AchievementElement achievement1 = new AchievementElement("Achievement 1", "Description 1", false);
-        AchievementElement achievement2 = new AchievementElement("Achievement 2", "Description 2", false);
-        AchievementElement achievement3 = new AchievementElement("Achievement 3", "Description 3", false);
-        AchievementElement achievement4 = new AchievementElement("Achievement 4", "Description 4", false);
-    
-        Achievement a = (Achievement) features.get(0);
-        a.addAchievementElement(achievement1);
-        a.addAchievementElement(achievement2);
-        a.addAchievementElement(achievement3);
-        a.addAchievementElement(achievement4);
-        AchievementController achievementController = new AchievementController(facade, a);
-    
-        achievementController.activate(new String[]{}, new String[]{"SuperLearningApp"});    
-        System.out.println("Root feature: " + feature.isActive());
-        System.out.println("Leaf feature: " + features.get(0).isActive());
-
-        achievementController.activate(new String[]{"SuperLearningApp"}, new String[]{});
-        System.out.println("Root feature: " + feature.isActive());
-        System.out.println("Leaf feature: " + features.get(0).isActive());
-
-        achievementController.activate(new String[]{}, new String[]{"Achievement"});    
-        System.out.println("Root feature: " + feature.isActive());
-        System.out.println("Leaf feature: " + features.get(0).isActive());
-
-        achievementController.activate(new String[]{}, new String[]{"SuperLearningApp"});    
-        System.out.println("Root feature: " + feature.isActive());
-        System.out.println("Leaf feature: " + features.get(0).isActive());
-        
-        achievementController.activate(new String[]{"Achievement"}, new String[]{});    
-        System.out.println("Root feature: " + feature.isActive());
-        System.out.println("Leaf feature: " + features.get(0).isActive());
-
-        System.out.println("Logs: ");
-        String[] logs = achievementController.getStateAsLog();
-        for (String log : logs) {
-            System.out.println(log);
-        }
-
-        System.out.println("Achievement: " + a.toString());
-
-        achievementController.setAchievementElementAchieved("Achievement 1", true);
-
-        System.out.println("");
-        System.out.println("Achievement: " + a.toString());
+        Commandline cli = new Commandline();
+        cli.command();   // lance la boucle console
     }
 }
+
+
+// import core.model.CompositeBuilder;
+// import core.model.Feature;
+// import feature.achievement.controller.AchievementController;
+// import feature.achievement.model.Achievement;
+// import feature.achievement.model.AchievementElement;
+// import feature.achievement.service.AchievementFacade;
+// import java.util.ArrayList;
+
+// public class Main {
+//     public static void main(String[] args) {
+//         CompositeBuilder compositeBuilder = CompositeBuilder.getInstance();
+//         System.out.println(compositeBuilder.toString());
+       
+//         Feature feature = compositeBuilder.getComposite().getRoot();
+//         ArrayList<Feature> features = feature.getChildren();
+        
+//         System.out.println("Root feature: " + feature.isActive());
+//         System.out.println("Leaf feature: " + features.get(0).isActive());
+    
+//         AchievementFacade facade = new AchievementFacade(compositeBuilder.getComposite());
+//         AchievementElement achievement1 = new AchievementElement("Achievement 1", "Description 1", false);
+//         AchievementElement achievement2 = new AchievementElement("Achievement 2", "Description 2", false);
+//         AchievementElement achievement3 = new AchievementElement("Achievement 3", "Description 3", false);
+//         AchievementElement achievement4 = new AchievementElement("Achievement 4", "Description 4", false);
+    
+//         Achievement a = (Achievement) features.get(0);
+//         a.addAchievementElement(achievement1);
+//         a.addAchievementElement(achievement2);
+//         a.addAchievementElement(achievement3);
+//         a.addAchievementElement(achievement4);
+//         AchievementController achievementController = new AchievementController(facade, a);
+    
+//         achievementController.activate(new String[]{}, new String[]{"SuperLearningApp"});    
+//         System.out.println("Root feature: " + feature.isActive());
+//         System.out.println("Leaf feature: " + features.get(0).isActive());
+
+//         achievementController.activate(new String[]{"SuperLearningApp"}, new String[]{});
+//         System.out.println("Root feature: " + feature.isActive());
+//         System.out.println("Leaf feature: " + features.get(0).isActive());
+
+//         achievementController.activate(new String[]{}, new String[]{"Achievement"});    
+//         System.out.println("Root feature: " + feature.isActive());
+//         System.out.println("Leaf feature: " + features.get(0).isActive());
+
+//         achievementController.activate(new String[]{}, new String[]{"SuperLearningApp"});    
+//         System.out.println("Root feature: " + feature.isActive());
+//         System.out.println("Leaf feature: " + features.get(0).isActive());
+        
+//         achievementController.activate(new String[]{"Achievement"}, new String[]{});    
+//         System.out.println("Root feature: " + feature.isActive());
+//         System.out.println("Leaf feature: " + features.get(0).isActive());
+
+//         System.out.println("Logs: ");
+//         String[] logs = achievementController.getStateAsLog();
+//         for (String log : logs) {
+//             System.out.println(log);
+//         }
+
+//         System.out.println("Achievement: " + a.toString());
+
+//         achievementController.setAchievementElementAchieved("Achievement 1", true);
+
+//         System.out.println("");
+//         System.out.println("Achievement: " + a.toString());
+//     }
+// }
 
 
 
