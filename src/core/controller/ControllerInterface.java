@@ -1,6 +1,4 @@
-import java.io.FileWriter;
-import java.io.IOException;
-
+package core.controller;
 
 public interface ControllerInterface {
 
