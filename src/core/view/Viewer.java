@@ -1,6 +1,8 @@
 package core.view;
 
 import java.awt.Color;
+import java.util.EnumMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,12 +11,18 @@ import javax.swing.JPanel;
 import core.observer.ObserverController;
 import core.observer.ObserverView;
 import core.observer.SubjectView;
+import src.core.view.States.*;
+import src.core.view.ViewState;
 
 public class Viewer implements ObserverView, SubjectView {
-    JFrame frame;
-    JPanel panel;
+
+    public enum Page {MAIN, COURSES, COIN, SHOP, METHOD, PROFILE}
+    private final Map<Page, ViewState> states = new EnumMap<>(Page.class);
+    private ViewState currentState;
+    public JFrame frame;
+    public JPanel panel;
     String userInput;
-    JButton buttonTemp;
+    //JButton buttonTemp;
 
     ObserverController observer;
 
@@ -29,18 +37,14 @@ public class Viewer implements ObserverView, SubjectView {
 
         // Setup frame with the panel
         this.frame.add(panel);
-        this.frame.setSize(200, 200);
+        this.frame.setSize(1920, 1080);
         this.frame.setVisible(true); // show the window
 
-        // Creation of a button that will be shown dynamically
-        this.buttonTemp = new JButton("Dynamic click me");
-        this.buttonTemp.addActionListener((actionEvent) -> {
-            //System.out.println("dynamic click");
-            userInput = "dynamic click";
-            notifyObserver();
-        });
+        this.InitAllStates();
+        this.goTo(Page.MAIN);
 
         this.observer = observer;
+        System.out.print(currentState);
     }
     @Override
     public void update(String input){
@@ -55,20 +59,34 @@ public class Viewer implements ObserverView, SubjectView {
         }
     }
 
+    public void InitAllStates(){
+        states.put(Page.MAIN,   new MainState(this));
+        states.put(Page.COURSES, new CourseState(this));
+    }
+
+    public void goTo(Page page){
+        panel.removeAll();
+        this.currentState = states.get(page);
+        this.currentState.handleRequest();
+    }
+
     public void setting(String input) {
 
         switch (input) {
 
             // Make the button appear
+            /*
             case "add":
                 this.panel.add(this.buttonTemp);
                 break;
+
 
             // Remove the button
             //Remove ne fonctionne pas
             case "remove":
                 this.panel.remove(this.buttonTemp);
                 break;
+             */
 
             // Enable dark mode
             case "dark":
