@@ -1,7 +1,7 @@
-package feature.course.subfeature.type.language;
+package src.feature.course.subfeature.type.language;
 
-import feature.course.CourseContent;
-import feature.course.QA;
+import src.feature.course.CourseContent;
+import src.feature.course.QA;
 import java.util.ArrayList;
 
 public class English extends CourseContent {

@@ -1,4 +1,4 @@
-package feature.achievement.model;
+package src.feature.achievement.model;
 
 public class AchievementElement {
     final private String name;

@@ -1,6 +1,6 @@
-package feature.course.subfeature.type;
+package src.feature.course.subfeature.type;
 
-import core.model.Feature;
+import src.core.model.Feature;
 import core.utils.ChildrenType;
 
 public class Type  extends Feature {

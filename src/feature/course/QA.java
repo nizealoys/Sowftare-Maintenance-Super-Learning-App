@@ -1,4 +1,4 @@
-package feature.course;
+package src.feature.course;
 
 public class QA {
     private final String question;

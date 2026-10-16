@@ -1,9 +1,10 @@
-package core.model;
+package src.core.model;
 
-import feature.achievement.model.Achievement;
-import feature.super_learning_app.SuperLearningApp;
+//import src.feature.achievement.*;
+//import src.feature.super_learning_app.SuperLearningApp;
 
 public class CompositeBuilder {
+    /**
     private static final CompositeBuilder instance = new CompositeBuilder();
     private final Composite composite;
 
@@ -27,9 +28,9 @@ public class CompositeBuilder {
         return composite.getFeature(featureName);
     }
 
-    @Override 
+    @Override
     public String toString() {
         return composite.toString();
     }
-
+    */
 }

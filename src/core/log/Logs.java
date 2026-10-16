@@ -1,6 +1,8 @@
-package core.log;
+package src.core.log;
 import java.util.ArrayList;
 
+
+// Le Log est chelou ?!?
 public class Logs {
     private final static Logs instance = new Logs();
     private final ArrayList<LogElement> logs;
@@ -24,5 +26,4 @@ public class Logs {
         }
         return logArray;
     }
-
 }

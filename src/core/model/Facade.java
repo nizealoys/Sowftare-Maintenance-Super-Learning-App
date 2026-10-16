@@ -1,6 +1,6 @@
-package core.model;
+package src.core.model;
 
-import core.log.Logs;
+import src.core.log.Logs;
 import java.util.ArrayList;
 
 public abstract class Facade {

@@ -1,10 +1,10 @@
-package core.model;
+package src.core.model;
 
-import core.log.Logs;
+import src.core.log.Logs;
 import core.utils.ChildrenType;
 import java.util.ArrayList;
 
-public abstract class Feature implements FeatureInterface {
+public abstract class Feature implements core.model.FeatureInterface {
     private final String name;
     private final boolean mandatory;
     private boolean activate;
@@ -20,6 +20,18 @@ public abstract class Feature implements FeatureInterface {
         this.parent = null;
         this.childrenType = childrenType;
     }
+
+    /*
+    public Feature(String name, boolean mandatory) {
+        this.name = name;
+        this.mandatory = mandatory;
+        //this.activate = activate;
+        this.children = new ArrayList<>();
+        this.parent = null;
+        this.childrenType = null;
+    }
+
+     */
 
 
     @Override

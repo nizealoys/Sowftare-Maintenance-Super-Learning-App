@@ -1,7 +1,7 @@
-package feature.course;
+package src.feature.course;
 
-import core.model.Composite;
-import core.model.Facade;
+import src.core.model.Composite;
+import src.core.model.Facade;
 
 public class CourseFacade extends Facade {
     public CourseFacade(Composite composite) {

@@ -1,6 +1,6 @@
-package feature.course.subfeature.type.language;
+package src.feature.course.subfeature.type.language;
 
-import core.model.Feature;
+import src.core.model.Feature;
 import core.utils.ChildrenType;
 
 public class Language extends Feature {

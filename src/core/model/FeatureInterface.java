@@ -1,5 +1,7 @@
 package core.model;
 
+import src.core.model.Feature;
+
 import java.util.ArrayList;
 
 public interface FeatureInterface {

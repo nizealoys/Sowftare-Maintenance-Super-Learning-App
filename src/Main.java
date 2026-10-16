@@ -1,9 +1,14 @@
-import core.controller.Commandline;
+import src.core.controller.Controller;
+import src.core.model.ModelBuilder;
+
+import java.io.FileNotFoundException;
 
 public class Main {
-    public static void main(String[] args) {
-        Commandline cli = new Commandline();
+    public static void main(String[] args) throws FileNotFoundException {
+        Controller cli = new Controller();
         cli.command();   // lance la boucle console
+        //ModelBuilder main = new ModelBuilder();
+        //main.test("/home/shema/Documents/UCL/Software maintenance/Projet/Sowftare-Maintenance-Super-Learning-App/Model.txt");
     }
 }
 

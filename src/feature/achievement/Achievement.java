@@ -1,6 +1,6 @@
-package feature.achievement.model;
+package src.feature.achievement.model;
 
-import core.model.Feature;
+import src.core.model.Feature;
 import core.utils.ChildrenType;
 import java.util.ArrayList;
 

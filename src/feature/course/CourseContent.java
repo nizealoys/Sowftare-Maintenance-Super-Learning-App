@@ -1,6 +1,6 @@
-package feature.course;
+package src.feature.course;
 
-import core.model.Feature;
+import src.core.model.Feature;
 import core.utils.ChildrenType;
 import java.util.ArrayList;
 
