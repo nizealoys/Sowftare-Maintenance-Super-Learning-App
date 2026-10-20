@@ -46,6 +46,7 @@ public class Viewer implements ObserverView, SubjectView {
         this.observer = observer;
         System.out.print(currentState);
     }
+
     @Override
     public void update(String input){
         setting(input);
@@ -62,6 +63,10 @@ public class Viewer implements ObserverView, SubjectView {
     public void InitAllStates(){
         states.put(Page.MAIN,   new MainState(this));
         states.put(Page.COURSES, new CourseState(this));
+        states.put(Page.SHOP, new ShopState(this));
+        states.put(Page.COIN, new CoinState(this));
+        states.put(Page.METHOD, new MethodState(this));
+        states.put(Page.PROFILE, new ProfileState(this));
     }
 
     public void goTo(Page page){

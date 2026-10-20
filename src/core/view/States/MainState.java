@@ -20,30 +20,45 @@ public class MainState implements ViewState {
          * JPanel panel = Panel du Viewer, le même pour chaque state
          */
 
+        //ajouter frame.validate & frame.repaint
+
         this.viewer = viewer;
         this.frame = viewer.frame;
         this.panel = viewer.panel;
         this.buttonTemps = new ArrayList<>();
+        build();
     }
 
-    public void draw(){
+    public void build(){
         /**
          * Fonction qui dessine l'etat
          */
-        this.buttonTemps.add(new JButton("User Profile"));
-        this.buttonTemps.add(new JButton("Coins"));
-        this.buttonTemps.add(new JButton("Shop"));
+
+        JButton coinButton = new JButton("Coins");
+        coinButton.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.COIN);
+        });
+        this.buttonTemps.add(coinButton);
+
+
+        JButton shopButton = new JButton("Shop");
+        shopButton.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.SHOP);
+        });
+        this.buttonTemps.add(shopButton);
 
         JButton courseButton = new JButton("Course");
         courseButton.addActionListener((actionEvent) -> {
             viewer.goTo(Viewer.Page.COURSES);
         });
-
         this.buttonTemps.add(courseButton);
 
-        for (JButton b : this.buttonTemps){
-            this.panel.add(b);
-        }
+        JButton profilbutton = new JButton("User Profile");
+        profilbutton.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.PROFILE);
+        });
+        this.buttonTemps.add(profilbutton);
+
         // Creation of a button that will be shown dynamically
         /*
         this.buttonTemp = new JButton("Dynamic click me");
@@ -58,6 +73,10 @@ public class MainState implements ViewState {
 
     @Override
     public void handleRequest() {
-        draw();
+        for (JButton b : this.buttonTemps){
+            this.panel.add(b);
+        }
+        this.frame.repaint();
+        this.frame.revalidate();
     }
 }

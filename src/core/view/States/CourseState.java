@@ -17,27 +17,50 @@ public class CourseState implements ViewState {
         this.frame = viewer.frame;
         this.panel = viewer.panel;
         this.buttonTemps = new ArrayList<>();
+        build();
     }
 
     @Override
-    public void draw() {
+    public void build() {
 
         JButton main = new JButton("Main Page");
         main.addActionListener((actionEvent) -> {
             viewer.goTo(Viewer.Page.MAIN);
         });
-        this.buttonTemps.add(new JButton("User Profile"));
 
-        this.buttonTemps.add(new JButton("Cooking"));
-        this.buttonTemps.add(new JButton("English"));
-        this.buttonTemps.add(new JButton("French"));
-        for (JButton b : this.buttonTemps){
-            this.panel.add(b);
-        }
+        this.buttonTemps.add(main);
+
+        JButton cookingbutton = new JButton("Cooking");
+        cookingbutton.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.METHOD);
+        });
+        this.buttonTemps.add(cookingbutton);
+
+        JButton englishbutton = new JButton("English");
+        englishbutton.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.METHOD);
+        });
+        this.buttonTemps.add(englishbutton);
+
+        JButton frenchbutton = new JButton("French");
+        frenchbutton.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.METHOD);
+        });
+        this.buttonTemps.add(frenchbutton);
+
+        JButton profilbutton = new JButton("User Profile");
+        profilbutton.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.PROFILE);
+        });
+        this.buttonTemps.add(profilbutton);
     }
 
     @Override
     public void handleRequest() {
-        draw();
+        for (JButton b : this.buttonTemps){
+            this.panel.add(b);
+        }
+        this.frame.repaint();
+        this.frame.revalidate();
     }
 }
