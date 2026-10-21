@@ -1,5 +1,8 @@
 package src.feature.course.subfeature.method;
 
+import src.feature.course.CourseContent;
+import src.feature.course.QA;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,14 +26,17 @@ public class Method{
 }
 
 class Lessons{
-    private ArrayList<String[]> lessons;
+    private ArrayList<topic> lessons;
     private String[] daily;
+    private CourseContent currentcourse;
 
-    public Lessons(String coursefile) throws IOException {
-        this.lessons = load(coursefile);
+    public Lessons(CourseContent currentcourse) throws IOException {
+        this.lessons = currentcourse.getQAList().getTopic();
         this.daily = null;
+        this.currentcourse = currentcourse;
     }
 
+    /**
     // generé avec Claude (à partir de ligne 42)
     public static ArrayList<String[]> load(String fileName) throws IOException {
         ArrayList<String[]> result = new ArrayList<String[]>();
@@ -80,4 +86,5 @@ class Lessons{
     public String[] getDaily() {
         return this.daily;
     }
+     */
 }

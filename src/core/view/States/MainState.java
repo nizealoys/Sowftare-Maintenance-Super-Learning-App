@@ -20,6 +20,8 @@ public class MainState implements ViewState {
          * JPanel panel = Panel du Viewer, le même pour chaque state
          */
 
+
+
         //ajouter frame.validate & frame.repaint
 
         this.viewer = viewer;

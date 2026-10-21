@@ -1,88 +1,101 @@
 #LESSON
-A/AN
+Topic 1
 easy
-(This course is from: https://www.anglaisfacile.com/)
-
-
-L'objectif du jour :
-
-> arriver à dire "un garçon", "une fille".
+An apple or A apple?
+An apple
 
 
 
+HashMap<Integer, HashMap<String : String>>
 
-La solution :
 
-il faut utiliser l'article A devant un nom commençant par un son "consonne" et 'AN' devant un nom commençant par un son "voyelle".
+ARBRE = Topic 1 : Explication : english a defaut si mot suivant voyelle alors an
 
-Exemples :
-- door (porte) > a door (une porte)
-/d/ est un son consonne
-
-- apple (pomme) > an apple (une pomme)
-/a/ est un son voyelle
-
-- kitchen (cuisine) > a kitchen (une cuisine)
-
-/k/ est un son consonne.
+#LESSON
 
 
 
+#####QA
+
+Topic 1
+HashMap pour topic 1
+easy
+
+Q = la determinant sangulier pour une pomme
+A = an apple
+Explication = [english a defaut si mot suivant voyelle alors an]
 
 
-Exceptions :
+#####LESSON
 
-1) Devant le son /j/, on utilise A et non AN.
+--> Topic 1
+    soit :
 
-Exemple : a union (ce mot commence bien par le son /j/. Ecoutez-le :
 
-
-Mais au fait, qu'est-ce que "le son /j/ ?"
-C'est le son qu'on retrouve au début de: 'yellow', 'United States'...
-
-ATTENTION ! C'est un symbole phonétique et non la lettre J. On retrouve un son proche en français  au début du mot 'Yaourt': le son 'ye'
+          -english a defaut si mot suivant voyelle alors an
 
 
 
-2)  Pour les mots commençant par un "h", il faut se demander s'il est prononcé (aspiré) ou non :
+          -la determinant sangulier pour une pomme est an apple
+            parce english a defaut si mot suivant voyelle alors an
 
-Si le  'h' est aspiré, le mot commence bien par un son consonne. On utilise donc A : A horrible war.
-Si le 'h' n'est pas aspiré, le mot ne commence pas par un son consonne, et donc, on utilise AN : an hour.
-],
+
+#####Exercice
+
+--> Topic 1
+
+    -->Question Quel est la determinant sangulier pour une pomme?    [reponse]    [hint]
+
+       --> HINT : english a defaut si mot suivant voyelle alors an
+
 [
-TO BE, easy,
+Topic 1:
+  topic = Topic 1
+  diffuculty = easy
 
-(This course is from: https://www.anglaisfacile.com/)
+  Q = la determinant sangulier pour une pomme
+  A = an apple
+  Explication = [english a defaut si mot suivant voyelle alors an]
+,
+Topic 1:
+  topic = Topic 1
+  diffuculty = easy
 
-I	 am 	je suis
-you 	 are	tu es
+  Q = la determinant sangulier pour une pomme
+  A = an apple
+  Explication = [english a defaut si mot suivant voyelle alors an]
 
-He
-She
+,
+Topic 1:
+  topic = Topic 1
+  diffuculty = easy
 
-It (neutre)
-	 is
+  Q = la determinant sangulier pour une pomme
+  A = an apple
+  Explication = [english a defaut si mot suivant voyelle alors an]
 
-HE IS: il est (pour un humain de sexe masculin)
+,
+Topic 1:
+  topic = Topic 1
+  diffuculty = easy
 
-
-
-
-
-
-
-SHE IS: elle est (pour un humain de sexe féminin)
-
-
-
-
-
-IT IS: il/elle est (objet, animal etc.)
+  Q = la determinant sangulier pour une pomme
+  A = an apple
+  Explication = [english a defaut si mot suivant voyelle alors an]
 
 
-We	 are	nous sommes
-You	 are	vous êtes
-They	 are	ils sont"
+]
+
+
+
+
+
+
+
+
+
+
+
 
 
 #LESSON
