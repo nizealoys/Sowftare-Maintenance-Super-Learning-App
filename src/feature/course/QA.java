@@ -1,19 +1,23 @@
 package src.feature.course;
 
-import java.util.HashMap;
-
 public class QA {
 
     private final String question;
     private final String answer;
-    private HashMap<Integer, String> topic;
-    private int difficulty;
+    private final int topic;
+    private final int difficulty;
+    private final String topicExplanation;
 
-    public QA(String question, String answer, HashMap<Integer, String> topic, int difficulty) {
+    public QA(String question, String answer, int topic, int difficulty, String topicExplanation) {
         this.question = question;
         this.answer = answer;
         this.topic = topic;
         this.difficulty = difficulty;
+        this.topicExplanation = topicExplanation;
+    }
+
+    public String getExplanation() {
+        return topicExplanation;
     }
 
     public String getQuestion() {
