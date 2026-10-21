@@ -107,7 +107,11 @@ public class Controller implements ControllerInterface, ObserverController, Subj
                     break;
 
                 default:
-                    notifyObserver(line);
+                    if (!observers.isEmpty()){
+                        System.out.println("Unknown command " + line);
+                    }
+
+                    else {notifyObserver(line);}
             }
         }
     }
