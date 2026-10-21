@@ -1,11 +1,11 @@
-package src.feature.achievement.model;
+package src.feature.achievement;
 
-import src.core.model.Feature;
-import core.utils.ChildrenType;
 import java.util.ArrayList;
+import src.core.model.Feature;
+import src.core.utils.ChildrenType;
 
 public class Achievement extends Feature {
-    ArrayList<AchievementElement> achievementElements;
+    public ArrayList<AchievementElement> achievementElements;
 
     public Achievement() {
         super("Achievement", true, true, ChildrenType.NONE);

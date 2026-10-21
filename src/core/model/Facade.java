@@ -1,16 +1,16 @@
 package src.core.model;
 
-import src.core.log.Logs;
 import java.util.ArrayList;
+import src.core.log.Logs;
 
-public abstract class Facade {
-    private final Composite composite;
+public class Facade {
+    private final static Facade facade = new Facade();
     private final Logs logs = Logs.getInstance();
-
-    public Facade(Composite composite) {
-        this.composite = composite;
-    }
+    private final Composite composite = Composite.getInstance();
     
+    public static Facade getInstance() {
+        return facade;
+    }
 
     // 0 good
     // -1 all failed

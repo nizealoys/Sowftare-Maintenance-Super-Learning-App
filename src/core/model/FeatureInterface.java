@@ -1,6 +1,4 @@
-package core.model;
-
-import src.core.model.Feature;
+package src.core.model;
 
 import java.util.ArrayList;
 

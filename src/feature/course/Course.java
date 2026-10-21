@@ -1,28 +1,31 @@
 package src.feature.course;
 
+import java.util.ArrayList;
 import src.core.model.Feature;
-import core.utils.ChildrenType;
+import src.core.utils.ChildrenType;
 
-public class Course extends Feature{
-    
-    private int courseSlot;
+public class Course extends Feature {
+
+    private ArrayList<Feature> courseList;
+    private int availableCourseSlot;
 
     public Course() {
         super("Course", true, true, ChildrenType.NONE);
-        courseSlot = 1;
+        availableCourseSlot = 1;
+        courseList = new ArrayList<>();
     }
 
-    public int getCourseSlot() {
-        return courseSlot;
+    public int GetavailableCourseSlot() {
+        return availableCourseSlot;
     }
 
     public void increaseCourseSlot() {
-        if (this.courseSlot < 3) {
-            this.courseSlot++;
+        if (this.availableCourseSlot < 3) {
+            this.availableCourseSlot++;
         }
     }
 
-    public void setCourseSlot(int courseSlot) {
-        this.courseSlot = courseSlot;
+    public void setCourseSlot(Feature course) {
+        this.courseList = courseList;
     }
 }

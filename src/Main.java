@@ -1,34 +1,16 @@
-package src;
-
 import src.core.controller.Controller;
 import src.core.model.ModelBuilder;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import src.feature.course.subfeature.method.Method;
-
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Method main = new Method();
-        main.printLesson();
-//        Path path = Path.of("src/ressources/english_lessons.txt");
-//        path = path.toAbsolutePath();
-//        System.out.println(Files.exists(path));
+    public static void main(String[] args) throws FileNotFoundException {
+        Controller cli = new Controller();
+        cli.command();   // lance la boucle console
+        //ModelBuilder main = new ModelBuilder();
+        //main.test("/home/shema/Documents/UCL/Software maintenance/Projet/Sowftare-Maintenance-Super-Learning-App/Model.txt");
     }
 }
-//public class Main {
-//    public static void main(String[] args) throws FileNotFoundException {
-//        Controller cli = new Controller();
-//        cli.command();   // lance la boucle console
-//        //ModelBuilder main = new ModelBuilder();
-//        //main.test("/home/shema/Documents/UCL/Software maintenance/Projet/Sowftare-Maintenance-Super-Learning-App/Model.txt");
-//    }
-//}
 
 
 // import core.model.CompositeBuilder;
