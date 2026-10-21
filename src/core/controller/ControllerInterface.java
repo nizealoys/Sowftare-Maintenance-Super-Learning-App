@@ -1,4 +1,4 @@
-package core.controller;
+package src.core.controller;
 
 public interface ControllerInterface {
 

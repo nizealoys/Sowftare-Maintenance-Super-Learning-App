@@ -1,7 +1,7 @@
 package src.feature.super_learning_app;
 
 import src.core.model.Feature;
-import core.utils.ChildrenType;
+import src.core.utils.ChildrenType;
 
 public class SuperLearningApp extends Feature {
     

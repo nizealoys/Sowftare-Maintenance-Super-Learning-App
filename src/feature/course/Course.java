@@ -1,7 +1,7 @@
 package src.feature.course;
 
 import src.core.model.Feature;
-import core.utils.ChildrenType;
+import src.core.utils.ChildrenType;
 
 public class Course extends Feature{
     

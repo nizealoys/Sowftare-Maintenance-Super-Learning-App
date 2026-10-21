@@ -1,1 +1,1 @@
-package feature.coins;
+package src.feature.coins;

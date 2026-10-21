@@ -1,39 +1,35 @@
 package src.core.controller;
 
-import src.core.log.LogElement;
-import src.core.log.Logs;
-import src.core.model.Facade;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import core.observer.ObserverController;
-import core.observer.SubjectController;
-import core.controller.ControllerInterface;
+import src.core.log.Logs;
+import src.core.model.Facade;
+import src.core.observer.ObserverController;
+import src.core.observer.ObserverView;
+import src.core.observer.SubjectController;
+import src.core.view.Viewer;
 
 public class Controller implements ControllerInterface, ObserverController, SubjectController {
-    private Facade facade;
+
+    private final Facade facade = Facade.getInstance();
     private final Logs logs = Logs.getInstance();
-    private List<core.observer.ObserverView> observers = new ArrayList<>();
+    private List<ObserverView> observers = new ArrayList<>();
     private List<String> userInputs = new ArrayList<>();
 
-    public Controller() {}
-
-    public Controller(Facade facade) {
-        this.facade = facade;
+    public Controller() {
     }
 
     @Override
-    public int activate(String[] deactivations, String[] activations){
+    public int activate(String[] deactivations, String[] activations) {
         logs.addLog("Activating: " + String.join(", ", activations) + " and deactivating: " + String.join(", ", deactivations));
-        facade.activate(deactivations, activations);
-        return 0;
+        return facade.activate(deactivations, activations);
     }
 
     @Override
     public boolean enableUIView() {
-        core.view.Viewer v = new core.view.Viewer( this);
+        Viewer v = new Viewer(this);
         this.addObserver(v);
         logs.addLog("User is Connected");
 
@@ -41,8 +37,8 @@ public class Controller implements ControllerInterface, ObserverController, Subj
     }
 
     @Override
-    public boolean disableUIView(){
-        for (core.observer.ObserverView observer : observers){
+    public boolean disableUIView() {
+        for (ObserverView observer : observers) {
             observer.update("CLOSE");
             logs.addLog("User is Disconnected");
         }
@@ -52,21 +48,23 @@ public class Controller implements ControllerInterface, ObserverController, Subj
     }
 
     @Override
-    public String[] getStateAsLog() {return logs.getLogs();}
+    public String[] getStateAsLog() {
+        return logs.getLogs();
+    }
 
     @Override
-    public void addObserver(core.observer.ObserverView observer) {
+    public void addObserver(ObserverView observer) {
         observers.add(observer);
     }
 
     @Override
-    public void removeObserver(core.observer.ObserverView observer) {
+    public void removeObserver(ObserverView observer) {
         observers.remove(observer);
     }
 
     @Override
     public void notifyObserver(String input) {
-        for (core.observer.ObserverView observer : observers) {
+        for (ObserverView observer : observers) {
             observer.update(input);
         }
     }
@@ -80,21 +78,21 @@ public class Controller implements ControllerInterface, ObserverController, Subj
         return false;
     }
 
-    public void command(){
+    public void command() {
         Scanner in = new Scanner(System.in);
 
         while (true) {
             String line = in.nextLine();
-            switch (line){
+            switch (line) {
                 case "enable":
                     enableUIView();
-                    System.out.print("New View enable \n" );
+                    System.out.print("New View enable \n");
                     System.out.print(this.observers.isEmpty() + "\n");
                     break;
                 case "disable":
                     disableUIView();
                     System.out.print("View disable \n");
-                    System.out.print(this.observers.isEmpty()  + "\n");
+                    System.out.print(this.observers.isEmpty() + "\n");
                     break;
 
                 case "stop":

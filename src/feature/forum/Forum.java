@@ -1,1 +1,1 @@
-package feature.forum;
+package src.feature.forum;

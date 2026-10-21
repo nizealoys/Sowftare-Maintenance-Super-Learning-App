@@ -1,10 +1,10 @@
 package src.core.model;
 
-import src.core.log.Logs;
-import core.utils.ChildrenType;
 import java.util.ArrayList;
+import src.core.log.Logs;
+import src.core.utils.ChildrenType;
 
-public abstract class Feature implements core.model.FeatureInterface {
+public class Feature implements FeatureInterface {
     private final String name;
     private final boolean mandatory;
     private boolean activate;
@@ -67,12 +67,12 @@ public abstract class Feature implements core.model.FeatureInterface {
             System.out.println(
                 name + " ne peut pas être désactivé"
             );
-            return true;
+            return false;
         }
 
         desactivationRecursive();
 
-        return false;
+        return true;
     }
 
     private void desactivationRecursive() {

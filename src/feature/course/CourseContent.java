@@ -1,7 +1,7 @@
 package src.feature.course;
 
 import src.core.model.Feature;
-import core.utils.ChildrenType;
+import src.core.utils.ChildrenType;
 import java.util.ArrayList;
 
 public abstract class CourseContent extends Feature {

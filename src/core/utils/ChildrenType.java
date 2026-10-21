@@ -1,4 +1,4 @@
-package core.utils;
+package src.core.utils;
 
 public enum ChildrenType {
     OR,

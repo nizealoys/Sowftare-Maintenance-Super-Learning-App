@@ -1,10 +1,9 @@
 package src.core.model;
 
-//import src.feature.achievement.*;
-//import src.feature.super_learning_app.SuperLearningApp;
+import src.feature.achievement.Achievement;
+import src.feature.super_learning_app.SuperLearningApp;
 
 public class CompositeBuilder {
-    /**
     private static final CompositeBuilder instance = new CompositeBuilder();
     private final Composite composite;
 
@@ -32,5 +31,4 @@ public class CompositeBuilder {
     public String toString() {
         return composite.toString();
     }
-    */
 }

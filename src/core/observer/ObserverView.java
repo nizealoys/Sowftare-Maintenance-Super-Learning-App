@@ -1,4 +1,4 @@
-package core.observer;
+package src.core.observer;
 
 public interface ObserverView {
     void update(String input);
