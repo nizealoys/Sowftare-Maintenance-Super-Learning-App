@@ -6,11 +6,14 @@ import src.core.log.Logs;
 public class Facade {
     private final static Facade facade = new Facade();
     private final Logs logs = Logs.getInstance();
-    private final Composite composite = Composite.getInstance();
-    
+    //private final Composite composite = Composite.getInstance();
+    private final Composite composite = CompositeBuilder.getInstance().getComposite();
+
     public static Facade getInstance() {
         return facade;
     }
+
+    public Composite getComposite() {return this.composite;}
 
     // 0 good
     // -1 all failed
@@ -79,5 +82,8 @@ public class Facade {
         }
 
         return activationFailedActivations;
+    }
+    public String toString(){
+        return this.composite.getFeature("SuperLearningApp").toString();
     }
 }

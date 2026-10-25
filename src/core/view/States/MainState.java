@@ -1,7 +1,7 @@
 package src.core.view.States;
 
 import src.core.view.ViewState;
-import core.view.Viewer;
+import src.core.view.Viewer;
 import javax.swing.*;
 import java.util.ArrayList;
 

@@ -1,7 +1,9 @@
 package src.core.view.States;
 
 import src.core.view.ViewState;
-import core.view.Viewer;
+import src.core.view.Viewer;
+import src.feature.course.subfeature.method.Methode;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -54,6 +56,11 @@ public class CourseState implements ViewState {
         });
         this.buttonTemps.add(profilbutton);
     }
+
+    /**public Methode getContent(String Course){
+        this.viewer.model.getComposite().createIterator();
+    }
+     */
 
     @Override
     public void handleRequest() {

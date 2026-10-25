@@ -1,15 +1,25 @@
 package src.core.view.States;
 
+import src.core.model.Feature;
+import src.core.model.FeatureInterface;
+import src.core.model.FeatureIterator;
 import src.core.view.ViewState;
-import core.view.Viewer;
+import src.core.view.Viewer;
+import src.feature.course.subfeature.method.Methode;
+import src.core.model.Iterator;
+import src.core.model.Feature;
+import src.feature.course.subfeature.type.language.English;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
+
 public class MethodState implements ViewState {
-    core.view.Viewer viewer;
+    Viewer viewer;
     JFrame frame;
     JPanel panel;
     ArrayList<JButton> buttonTemps;
+    English english = new English();
 
     public MethodState(Viewer viewer){
         this.viewer = viewer;
@@ -24,14 +34,32 @@ public class MethodState implements ViewState {
 
         JButton main = new JButton("Main Page");
         main.addActionListener((actionEvent) -> {
-            viewer.goTo(core.view.Viewer.Page.MAIN);
+            viewer.goTo(Viewer.Page.MAIN);
         });
 
         this.buttonTemps.add(main);
 
         this.buttonTemps.add(new JButton("Workshop"));
-        this.buttonTemps.add(new JButton("Exercices"));
-        this.buttonTemps.add(new JButton("Lessons"));
+
+        JButton exercices = new JButton("Exercices");
+        exercices.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.EXERCICES);
+        });
+        this.buttonTemps.add(exercices);
+
+        JButton lessons = new JButton("Lessons");
+        exercices.addActionListener((actionEvent) -> {
+            viewer.goTo(Viewer.Page.LESSONS);
+            Iterator<Feature> it = viewer.model.getComposite().createIterator();
+            while (it.hasNext()) {
+                Feature f = it.next();
+                if (f instanceof Methode methode) {
+                    methode.setCourseData(english);
+                    break;
+                }
+            }
+        });
+        this.buttonTemps.add(lessons);
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {

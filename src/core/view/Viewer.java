@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.util.EnumMap;
 import java.util.Map;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
+import src.core.model.Facade;
 import src.core.observer.ObserverController;
 import src.core.observer.ObserverView;
 import src.core.observer.SubjectView;
@@ -16,8 +15,12 @@ import src.core.view.ViewState;
 
 public class Viewer implements ObserverView, SubjectView {
 
+    public Facade model;
+
+    private int userId;
+
     public enum Page {
-        MAIN, COURSES, COIN, SHOP, METHOD, PROFILE
+        MAIN, COURSES, COIN, SHOP, METHOD, PROFILE, EXERCICES, LESSONS
     }
     private final Map<Page, ViewState> states = new EnumMap<>(Page.class);
     private ViewState currentState;
@@ -28,9 +31,11 @@ public class Viewer implements ObserverView, SubjectView {
 
     ObserverController observer;
 
-    public Viewer(ObserverController observer) {
+    public Viewer(ObserverController observer, int userId) {
+        this.model = Facade.getInstance();
+        this.userId = userId;
         // Create window with title "application" that stop the program when closed
-        this.frame = new JFrame("Application");
+        this.frame = new JFrame("SUPER LEARNING APP: COOKING EDITION - USER " + this.userId);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -40,19 +45,17 @@ public class Viewer implements ObserverView, SubjectView {
         // Setup frame with the panel
         this.frame.add(panel);
         this.frame.setSize(1920, 1080);
-        this.frame.setVisible(true); // show the window
+        //this.frame.setVisible(true); // show the window
 
         this.InitAllStates();
         this.goTo(Page.MAIN);
 
         this.observer = observer;
-        System.out.print(currentState);
     }
 
     @Override
-    public void update(String input) {
-        setting(input);
-        this.notifyObserver();
+    public int update(String[] deactivations, String[] activations) {
+        return model.activate(deactivations, activations);
     }
 
     @Override
@@ -77,44 +80,14 @@ public class Viewer implements ObserverView, SubjectView {
         this.currentState.handleRequest();
     }
 
-    public void setting(String input) {
+    @Override
+    public void show()  { SwingUtilities.invokeLater(() -> frame.setVisible(true)); }
 
-        switch (input) {
+    @Override
+    public void hide()  { SwingUtilities.invokeLater(() -> frame.setVisible(false)); }
 
-            // Make the button appear
-            /*
-            case "add":
-                this.panel.add(this.buttonTemp);
-                break;
+    @Override
+    public void close() { SwingUtilities.invokeLater(frame::dispose); }
 
-
-            // Remove the button
-            //Remove ne fonctionne pas
-            case "remove":
-                this.panel.remove(this.buttonTemp);
-                break;
-             */
-            // Enable dark mode
-            case "dark":
-                this.panel.setBackground(Color.BLACK);
-                break;
-
-            // Disable dark mode
-            case "light":
-                this.panel.setBackground(Color.WHITE);
-                break;
-
-            //utilisé par disableUIView
-            case "CLOSE":
-                this.frame.dispose();
-                return;
-
-            // Unknown command
-            default:
-                System.out.println("Unknown command " + input);
-                break;
-        }
-        this.frame.repaint();
-        this.frame.revalidate();
-    }
+    public int getUserId() { return this.userId; }
 }

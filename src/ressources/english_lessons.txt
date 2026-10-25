@@ -15,6 +15,7 @@ ARBRE = Topic 1 : Explication : english a defaut si mot suivant voyelle alors an
 
 
 
+
 #####QA
 
 Topic 1
@@ -47,45 +48,6 @@ Explication = [english a defaut si mot suivant voyelle alors an]
     -->Question Quel est la determinant sangulier pour une pomme?    [reponse]    [hint]
 
        --> HINT : english a defaut si mot suivant voyelle alors an
-
-[
-Topic 1:
-  topic = Topic 1
-  diffuculty = easy
-
-  Q = la determinant sangulier pour une pomme
-  A = an apple
-  Explication = [english a defaut si mot suivant voyelle alors an]
-,
-Topic 1:
-  topic = Topic 1
-  diffuculty = easy
-
-  Q = la determinant sangulier pour une pomme
-  A = an apple
-  Explication = [english a defaut si mot suivant voyelle alors an]
-
-,
-Topic 1:
-  topic = Topic 1
-  diffuculty = easy
-
-  Q = la determinant sangulier pour une pomme
-  A = an apple
-  Explication = [english a defaut si mot suivant voyelle alors an]
-
-,
-Topic 1:
-  topic = Topic 1
-  diffuculty = easy
-
-  Q = la determinant sangulier pour une pomme
-  A = an apple
-  Explication = [english a defaut si mot suivant voyelle alors an]
-
-
-]
-
 
 
 

@@ -1,13 +1,13 @@
 package src.core.view.States;
 
 import src.core.view.ViewState;
-import core.view.Viewer;
+import src.core.view.Viewer;
 import javax.swing.*;
 import java.util.ArrayList;
 
 
 public class ShopState implements ViewState {
-    core.view.Viewer viewer;
+    Viewer viewer;
     JFrame frame;
     JPanel panel;
     ArrayList<JButton> buttonTemps;
@@ -25,7 +25,7 @@ public class ShopState implements ViewState {
 
         JButton mainbutton = new JButton("Main Page");
         mainbutton.addActionListener((actionEvent) -> {
-            viewer.goTo(core.view.Viewer.Page.MAIN);
+            viewer.goTo(Viewer.Page.MAIN);
         });
         this.buttonTemps.add(mainbutton);
 

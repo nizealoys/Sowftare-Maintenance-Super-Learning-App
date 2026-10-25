@@ -16,6 +16,10 @@ public class QA {
         this.topicExplanation = topicExplanation;
     }
 
+    public int getTopic() {
+        return topic;
+    }
+
     public String getExplanation() {
         return topicExplanation;
     }

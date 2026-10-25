@@ -1,5 +1,6 @@
+package src;
+
 import src.core.controller.Controller;
-import src.core.model.ModelBuilder;
 
 import java.io.FileNotFoundException;
 

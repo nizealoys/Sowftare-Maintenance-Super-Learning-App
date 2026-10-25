@@ -1,6 +1,6 @@
 package src.core.model;
 
-public class Composite {
+public class Composite implements Aggregate {
 
     private final static Composite instance = new Composite();
     private Feature root;
@@ -51,5 +51,10 @@ public class Composite {
         StringBuilder model = new StringBuilder();
         model.append(root.toString());
         return model.toString();
-    } 
+    }
+
+    @Override
+    public Iterator<Feature> createIterator() {
+        return new FeatureIterator(this.root);
+    }
 }
