@@ -19,16 +19,16 @@ public class CompositeBuilder {
         this.composite.setRoot(new SuperLearningApp());
         feature = composite.getFeature("SuperLearningApp");
         initialisation(feature);
-        feature.add(new Achievement());
     }
 
     private void initialisation(Feature feature) {
         feature.add(new Achievement());
         Feature course = new Course();
         Feature english = new English();
-        //Feature french = new French();
+        Feature french = new French();
         Feature methode = new Methode();
         course.add(english);
+        course.add(french);
         course.add(methode);
         feature.add(course);
     }

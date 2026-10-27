@@ -16,9 +16,17 @@ public class Methode extends Feature { //modifer le nom
         super("Method", true, true,ChildrenType.OR);
     }
 
-    public void setCourseData(CourseContent currentlesson) {
-        this.lessons = new Lessons(currentlesson);
+    public Feature getCourse (String name){
+        return getFeature(name);
+    }
+
+    public void setCourseData(CourseContent course) {
+        this.lessons = new Lessons(course);
         this.exercices = new Exercice(this.lessons);
+    }
+
+    public ArrayList<QA> getQAList() {
+        return this.lessons.getQAList();
     }
 
 }

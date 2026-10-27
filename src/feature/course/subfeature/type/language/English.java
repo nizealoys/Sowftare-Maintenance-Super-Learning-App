@@ -5,11 +5,9 @@ import src.feature.course.QA;
 import java.util.ArrayList;
 
 public class English extends CourseContent {
-    ArrayList<QA> qaList;
 
     public English() {
         super("English", false, false);
-        this.qaList = new ArrayList<>();
         testQA();
     }
 

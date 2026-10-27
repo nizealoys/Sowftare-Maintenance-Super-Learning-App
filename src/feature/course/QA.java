@@ -16,6 +16,8 @@ public class QA {
         this.topicExplanation = topicExplanation;
     }
 
+    public int getDifficulty(){return this.difficulty;}
+
     public int getTopic() {
         return topic;
     }

@@ -5,7 +5,7 @@ import src.core.utils.ChildrenType;
 import java.util.ArrayList;
 
 public abstract class CourseContent extends Feature {
-    private final ArrayList<QA> qaList;
+    protected final ArrayList<QA> qaList;
 
     public CourseContent(String name, boolean isMandatory, boolean isSelectable) {
         super(name, isMandatory, isSelectable, ChildrenType.NONE);
