@@ -2,6 +2,7 @@ package src.core.model;
 
 import src.feature.achievement.Achievement;
 import src.feature.course.Course;
+import src.feature.course.subfeature.method.Methode;
 import src.feature.course.subfeature.type.Type;
 import src.feature.course.subfeature.type.language.English;
 import src.feature.course.subfeature.type.language.French;
@@ -25,6 +26,7 @@ public class CompositeBuilder {
         // feature = course
         feature = Course.getInstance();
         feature.add(Type.getInstance());
+        feature.add(Methode.getInstance());
 
         // feature = type
         feature = Type.getInstance();

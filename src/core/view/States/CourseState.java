@@ -32,6 +32,7 @@ public class CourseState implements ViewState {
 
         while (it.hasNext()) {
             Feature f = it.next();
+            System.out.println("Feature: " + f.getName() + ", Type: " + f.getClass().getSimpleName());
             if (f instanceof Methode m) {
                 methode = m;
             }
