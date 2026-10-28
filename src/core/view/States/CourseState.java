@@ -2,6 +2,7 @@ package src.core.view.states;
 
 import java.util.ArrayList;
 import javax.swing.*;
+import src.core.model.Composite;
 import src.core.model.Feature;
 import src.core.model.Iterator;
 import src.core.view.ViewState;
@@ -26,13 +27,12 @@ public class CourseState implements ViewState {
 
     public Methode getCourseData(String courseName) {
         //Code généré par IA
-        Iterator<Feature> it = viewer.model.getComposite().createIterator();
+        Iterator<Feature> it = Composite.getInstance().createIterator();
         CourseContent course = null;
         Methode methode = null;
 
         while (it.hasNext()) {
             Feature f = it.next();
-            System.out.println("Feature: " + f.getName() + ", Type: " + f.getClass().getSimpleName());
             if (f instanceof Methode m) {
                 methode = m;
             }
@@ -46,7 +46,6 @@ public class CourseState implements ViewState {
             return null;
         }
         methode.setCourseData(course);
-        System.out.print(course.getQAList());
         return methode;
     }
 

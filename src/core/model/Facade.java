@@ -62,7 +62,6 @@ public class Facade {
                     if (activationSuccess) {
                         course.removeCourse(courseContent);
                     }
-                    System.out.println("Deactivating: " + featureName + " - Success: " + activationSuccess);
 
                 } else if (feature instanceof Premium) {
                     Course course = Course.getInstance();
@@ -106,7 +105,6 @@ public class Facade {
                     if (activationSuccess) {
                         course.addCourse(courseContent);
                     }
-                    System.out.println("Activating: " + featureName + " - Success: " + activationSuccess);
 
                 } else {
                     activationSuccess = feature.activation();

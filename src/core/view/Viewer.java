@@ -3,17 +3,12 @@ package src.core.view;
 import java.util.EnumMap;
 import java.util.Map;
 import javax.swing.*;
-import src.core.model.Facade;
-import src.core.observer.ObserverController;
-import src.core.observer.ObserverView;
-import src.core.observer.SubjectView;
+import src.core.controller.Controller;
 import src.core.view.states.*;
 
-public class Viewer implements ObserverView, SubjectView {
+public class Viewer {
 
-    public Facade model;
-
-    private int userId;
+    public Controller controller;
 
     public enum Page {
         MAIN, COURSES, COIN, SHOP, METHOD, PROFILE, EXERCICES, LESSONS, TOPIC, DIFFICULTY
@@ -25,13 +20,11 @@ public class Viewer implements ObserverView, SubjectView {
     String userInput;
     //JButton buttonTemp;
 
-    ObserverController observer;
-
-    public Viewer(ObserverController observer, int userId) {
-        this.model = Facade.getInstance();
-        this.userId = userId;
+    // Controller observer;
+    public Viewer(/*Controller observer*/) {
+        this.controller = Controller.getInstance();
         // Create window with title "application" that stop the program when closed
-        this.frame = new JFrame("SUPER LEARNING APP: COOKING EDITION - USER " + this.userId);
+        this.frame = new JFrame("SUPER LEARNING APP: COOKING EDITION");
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -47,22 +40,10 @@ public class Viewer implements ObserverView, SubjectView {
         this.InitAllStates();
         this.goTo(Page.MAIN);
 
-        this.observer = observer;
+        // this.observer = observer;
     }
 
-    @Override
-    public int update(String[] deactivations, String[] activations) {
-        return model.activate(deactivations, activations);
-    }
-
-    @Override
-    public void notifyObserver() {
-        if (userInput != null) {
-            observer.update(this.userInput);
-        }
-    }
-
-    public void InitAllStates() {
+    private void InitAllStates() {
         states.put(Page.MAIN, new MainState(this));
         states.put(Page.COURSES, new CourseState(this));
         states.put(Page.SHOP, new ShopState(this));
@@ -85,22 +66,15 @@ public class Viewer implements ObserverView, SubjectView {
         this.currentState.handleRequest();
     }
 
-    @Override
     public void show() {
         SwingUtilities.invokeLater(() -> frame.setVisible(true));
     }
 
-    @Override
     public void hide() {
         SwingUtilities.invokeLater(() -> frame.setVisible(false));
     }
 
-    @Override
     public void close() {
         SwingUtilities.invokeLater(frame::dispose);
-    }
-
-    public int getUserId() {
-        return this.userId;
     }
 }

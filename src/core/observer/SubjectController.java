@@ -1,7 +1,6 @@
 package src.core.observer;
 
 public interface SubjectController {
-    void addObserver(ObserverView observer);
-    void removeObserver(ObserverView observer);
+
     int notifyObserver(String[] deactivations, String[] activations);
 }
