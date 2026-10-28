@@ -25,11 +25,6 @@ public abstract class CourseContent extends Feature {
         }
     }
 
-    @Override
-    public boolean activation() {
-        return super.activation();
-    }
-
     public ArrayList<QA> getQAList() {
         return qaList;
     }
