@@ -1,11 +1,7 @@
-package feature.super_learning_app;
+package src.feature.super_learning_app;
 
-import core.model.Composite;
-import core.model.Facade;
+import src.core.model.Facade;
 
 public class SuperLearningAppFacade extends Facade {
-    public SuperLearningAppFacade(Composite composite) {
-        super(composite);
-    }
     
 }

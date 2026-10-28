@@ -1,28 +1,62 @@
-package feature.course;
+package src.feature.course;
 
-import core.model.Feature;
-import core.utils.ChildrenType;
+import java.util.ArrayList;
+import src.core.model.Feature;
+import src.core.utils.ChildrenType;
 
-public class Course extends Feature{
-    
-    private int courseSlot;
+public class Course extends Feature {
 
-    public Course() {
+    public static final Course instance = new Course();
+    private ArrayList<Feature> courseList;
+    private int CourseSlot;
+    private int oldCourseSlot;
+
+    private Course() {
         super("Course", true, true, ChildrenType.NONE);
-        courseSlot = 1;
+        CourseSlot = 1;
+        oldCourseSlot = 1;
+        courseList = new ArrayList<>();
+    }
+
+    public static Course getInstance() {
+        return instance;
     }
 
     public int getCourseSlot() {
-        return courseSlot;
+        return CourseSlot;
     }
 
     public void increaseCourseSlot() {
-        if (this.courseSlot < 3) {
-            this.courseSlot++;
+        if (this.CourseSlot < 3) {
+            this.CourseSlot++;
         }
     }
 
-    public void setCourseSlot(int courseSlot) {
-        this.courseSlot = courseSlot;
+    public void setCourseSlot(int newSlot) {
+        CourseSlot = newSlot;
+    }
+
+    public void setCourseList(ArrayList<Feature> course) {
+        this.courseList = course;
+    }
+
+    public void addCourse(Feature course) {
+        this.courseList.add(course);
+    }
+
+    public void removeCourse(Feature course) {
+        this.courseList.remove(course);
+    }
+
+    public ArrayList<Feature> getCourseList() {
+        return courseList;
+    }
+
+    public void setOldCourseSlot(int oldSlot) {
+        this.oldCourseSlot = oldSlot;
+    }
+
+    public int getOldCourseSlot() {
+        return oldCourseSlot;
     }
 }

@@ -1,25 +1,37 @@
-package core.view;
-import java.awt.Color;
+package src.core.view;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import core.observer.ObserverController;
-import core.observer.ObserverView;
-import core.observer.SubjectView;
+import java.util.EnumMap;
+import java.util.Map;
+import javax.swing.*;
+import src.core.model.Facade;
+import src.core.observer.ObserverController;
+import src.core.observer.ObserverView;
+import src.core.observer.SubjectView;
+import src.core.view.states.*;
 
 public class Viewer implements ObserverView, SubjectView {
-    JFrame frame;
-    JPanel panel;
+
+    public Facade model;
+
+    private int userId;
+
+    public enum Page {
+        MAIN, COURSES, COIN, SHOP, METHOD, PROFILE, EXERCICES, LESSONS
+    }
+    private final Map<Page, ViewState> states = new EnumMap<>(Page.class);
+    private ViewState currentState;
+    public JFrame frame;
+    public JPanel panel;
     String userInput;
-    JButton buttonTemp;
+    //JButton buttonTemp;
 
     ObserverController observer;
 
-    public Viewer(ObserverController observer){
+    public Viewer(ObserverController observer, int userId) {
+        this.model = Facade.getInstance();
+        this.userId = userId;
         // Create window with title "application" that stop the program when closed
-        this.frame = new JFrame("Application");
+        this.frame = new JFrame("SUPER LEARNING APP: COOKING EDITION - USER " + this.userId);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -28,69 +40,58 @@ public class Viewer implements ObserverView, SubjectView {
 
         // Setup frame with the panel
         this.frame.add(panel);
-        this.frame.setSize(200, 200);
-        this.frame.setVisible(true); // show the window
+        this.frame.setSize(1920, 1080);
+        //this.frame.setVisible(true); // show the window
 
-        // Creation of a button that will be shown dynamically
-        this.buttonTemp = new JButton("Dynamic click me");
-        this.buttonTemp.addActionListener((actionEvent) -> {
-            //System.out.println("dynamic click");
-            userInput = "dynamic click";
-            notifyObserver();
-        });
+        this.InitAllStates();
+        this.goTo(Page.MAIN);
 
         this.observer = observer;
     }
+
     @Override
-    public void update(String input){
-        setting(input);
-        this.notifyObserver();
-         }
+    public int update(String[] deactivations, String[] activations) {
+        return model.activate(deactivations, activations);
+    }
 
     @Override
     public void notifyObserver() {
-        if (userInput != null){
+        if (userInput != null) {
             observer.update(this.userInput);
         }
     }
 
-    public void setting(String input) {
+    public void InitAllStates() {
+        states.put(Page.MAIN, new MainState(this));
+        states.put(Page.COURSES, new CourseState(this));
+        states.put(Page.SHOP, new ShopState(this));
+        states.put(Page.COIN, new CoinState(this));
+        states.put(Page.METHOD, new MethodState(this));
+        states.put(Page.PROFILE, new ProfileState(this));
+    }
 
-        switch (input) {
+    public void goTo(Page page) {
+        panel.removeAll();
+        this.currentState = states.get(page);
+        this.currentState.handleRequest();
+    }
 
-            // Make the button appear
-            case "add":
-                this.panel.add(this.buttonTemp);
-                break;
+    @Override
+    public void show() {
+        SwingUtilities.invokeLater(() -> frame.setVisible(true));
+    }
 
-            // Remove the button
-            //Remove ne fonctionne pas
-            case "remove":
-                this.panel.remove(this.buttonTemp);
-                break;
+    @Override
+    public void hide() {
+        SwingUtilities.invokeLater(() -> frame.setVisible(false));
+    }
 
-            // Enable dark mode
-            case "dark":
-                this.panel.setBackground(Color.BLACK);
-                break;
+    @Override
+    public void close() {
+        SwingUtilities.invokeLater(frame::dispose);
+    }
 
-            // Disable dark mode
-            case "light":
-                this.panel.setBackground(Color.WHITE);
-                break;
-
-            //utilisé par disableUIView
-            case "CLOSE":
-                this.frame.dispose();
-                return;
-
-
-            // Unknown command
-            default:
-                System.out.println("Unknown command " + input);
-                break;
-        }
-        this.frame.repaint();
-        this.frame.revalidate();
+    public int getUserId() {
+        return this.userId;
     }
 }

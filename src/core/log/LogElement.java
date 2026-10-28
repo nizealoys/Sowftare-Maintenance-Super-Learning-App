@@ -1,4 +1,4 @@
-package core.log;
+package src.core.log;
 
 public class LogElement {
     private final String log;

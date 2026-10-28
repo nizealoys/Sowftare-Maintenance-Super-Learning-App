@@ -1,11 +1,18 @@
-package feature.course.subfeature.type.language;
+package src.feature.course.subfeature.type.language;
 
-import core.model.Feature;
-import core.utils.ChildrenType;
+import src.core.model.Feature;
+import src.core.utils.ChildrenType;
 
 public class Language extends Feature {
-    public Language() {
+
+    public static final Language instance = new Language();
+
+    private Language() {
         super("Language", false, false, ChildrenType.OR);
     }
-    
+
+    public static Language getInstance() {
+        return instance;
+    }
+
 }

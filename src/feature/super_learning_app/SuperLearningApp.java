@@ -1,12 +1,17 @@
+package src.feature.super_learning_app;
 
-
-package feature.super_learning_app;
-import core.model.Feature;
-import core.utils.ChildrenType;
+import src.core.model.Feature;
+import src.core.utils.ChildrenType;
 
 public class SuperLearningApp extends Feature {
-    
-    public SuperLearningApp() {
+
+    public static final SuperLearningApp instance = new SuperLearningApp();
+
+    private SuperLearningApp() {
         super("SuperLearningApp", false, false, ChildrenType.NONE);
+    }
+
+    public static SuperLearningApp getInstance() {
+        return instance;
     }
 }
