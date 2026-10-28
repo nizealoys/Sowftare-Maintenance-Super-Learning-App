@@ -7,6 +7,9 @@ import src.feature.course.subfeature.method.Methode;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * LES SETS DIFFICULTY BUG QUAND ON L'UTILISE SUR PLUSIEURS VIEWERS EN MÊME TEMPS
+ */
 public class DifficultyState implements ViewState {
     Viewer viewer;
     JFrame frame;
@@ -15,7 +18,6 @@ public class DifficultyState implements ViewState {
     Methode current;
     String courseName;
     JLabel titlePanel= new JLabel("SET DIFFICULTY");
-    Boolean difficultyIsSet = false;
 
 
     public DifficultyState(Viewer viewer){
@@ -32,6 +34,7 @@ public class DifficultyState implements ViewState {
         viewer.goTo(Viewer.Page.LESSONS);
     }
 
+    @Override
     public void build() {
 
         JButton easy = new JButton("Easy");
