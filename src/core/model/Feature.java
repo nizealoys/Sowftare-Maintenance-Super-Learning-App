@@ -68,6 +68,13 @@ public class Feature implements FeatureInterface {
         return childrenType.name();
     }
 
+    public Feature getFeature(String name){
+        if(name.equals(this.getName())){
+            return this;
+        }
+        return null;
+    }
+
     @Override
     public boolean desactivation() {
 

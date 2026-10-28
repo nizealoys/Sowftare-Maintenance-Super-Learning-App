@@ -2,8 +2,12 @@ package src.core.view.states;
 
 import java.util.ArrayList;
 import javax.swing.*;
+import src.core.model.Feature;
+import src.core.model.Iterator;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
+import src.feature.course.CourseContent;
+import src.feature.course.subfeature.method.Methode;
 
 public class CourseState implements ViewState {
 
@@ -20,6 +24,31 @@ public class CourseState implements ViewState {
         build();
     }
 
+    public Methode getCourseData(String courseName) {
+        //Code généré par IA
+        Iterator<Feature> it = viewer.model.getComposite().createIterator();
+        CourseContent course = null;
+        Methode methode = null;
+
+        while (it.hasNext()) {
+            Feature f = it.next();
+            if (f instanceof Methode m) {
+                methode = m;
+            }
+            if (f instanceof CourseContent c && c.getName().equalsIgnoreCase(courseName)) {
+                course = c;
+            }
+        }
+
+        if (methode == null || course == null) {
+            System.err.println("Cours introuvable : " + courseName);
+            return null;
+        }
+        methode.setCourseData(course);
+        System.out.print(course.getQAList());
+        return methode;
+    }
+
     @Override
     public void build() {
 
@@ -32,18 +61,24 @@ public class CourseState implements ViewState {
 
         JButton cookingbutton = new JButton("Cooking");
         cookingbutton.addActionListener((actionEvent) -> {
+            //viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData("Cooking"));
+            viewer.getState(Viewer.Page.METHOD, MethodState.class).setName("Cooking");
             viewer.goTo(Viewer.Page.METHOD);
         });
         this.buttonTemps.add(cookingbutton);
 
         JButton englishbutton = new JButton("English");
         englishbutton.addActionListener((actionEvent) -> {
+            viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData("English"));
+            viewer.getState(Viewer.Page.METHOD, MethodState.class).setName("English");
             viewer.goTo(Viewer.Page.METHOD);
         });
         this.buttonTemps.add(englishbutton);
 
         JButton frenchbutton = new JButton("French");
         frenchbutton.addActionListener((actionEvent) -> {
+            viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData("French"));
+            viewer.getState(Viewer.Page.METHOD, MethodState.class).setName("French");
             viewer.goTo(Viewer.Page.METHOD);
         });
         this.buttonTemps.add(frenchbutton);

@@ -16,7 +16,7 @@ public class Viewer implements ObserverView, SubjectView {
     private int userId;
 
     public enum Page {
-        MAIN, COURSES, COIN, SHOP, METHOD, PROFILE, EXERCICES, LESSONS
+        MAIN, COURSES, COIN, SHOP, METHOD, PROFILE, EXERCICES, LESSONS, TOPIC, DIFFICULTY
     }
     private final Map<Page, ViewState> states = new EnumMap<>(Page.class);
     private ViewState currentState;
@@ -41,6 +41,7 @@ public class Viewer implements ObserverView, SubjectView {
         // Setup frame with the panel
         this.frame.add(panel);
         this.frame.setSize(1920, 1080);
+        //this.frame.setSize(200, 200);
         //this.frame.setVisible(true); // show the window
 
         this.InitAllStates();
@@ -68,6 +69,14 @@ public class Viewer implements ObserverView, SubjectView {
         states.put(Page.COIN, new CoinState(this));
         states.put(Page.METHOD, new MethodState(this));
         states.put(Page.PROFILE, new ProfileState(this));
+        states.put(Page.LESSONS, new LessonState(this));
+        states.put(Page.TOPIC, new TopicState(this));
+        states.put(Page.EXERCICES, new ExerciceState(this));
+        states.put(Page.DIFFICULTY, new DifficultyState(this));
+    }
+
+    public <T extends ViewState> T getState(Page page, Class<T> type) {
+        return type.cast(states.get(page));
     }
 
     public void goTo(Page page) {
