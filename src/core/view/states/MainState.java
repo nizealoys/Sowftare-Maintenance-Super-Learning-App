@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
+import src.core.view.states.*;
 
 public class MainState implements ViewState {
 
@@ -46,12 +47,15 @@ public class MainState implements ViewState {
 
         JButton courseButton = new JButton("Course");
         courseButton.addActionListener((actionEvent) -> {
+            viewer.getState(Viewer.Page.COURSES, CourseState.class).getCourseAvailable();
             viewer.goTo(Viewer.Page.COURSES);
         });
         this.buttonTemps.add(courseButton);
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getPremiumState();
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).premiumPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);

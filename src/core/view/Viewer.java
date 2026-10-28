@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import javax.swing.*;
 import src.core.controller.Controller;
+import src.core.model.Composite;
 import src.core.view.states.*;
 
 public class Viewer {
@@ -21,7 +22,7 @@ public class Viewer {
     //JButton buttonTemp;
 
     // Controller observer;
-    public Viewer(/*Controller observer*/) {
+    public Viewer() {
         this.controller = Controller.getInstance();
         // Create window with title "application" that stop the program when closed
         this.frame = new JFrame("SUPER LEARNING APP: COOKING EDITION");
@@ -36,7 +37,9 @@ public class Viewer {
         this.frame.setSize(1920, 1080);
         //this.frame.setSize(200, 200);
         //this.frame.setVisible(true); // show the window
-
+        //Composite c = controller.getComposite();
+        System.out.println("\n controller = " + controller);
+        Thread.dumpStack();
         this.InitAllStates();
         this.goTo(Page.MAIN);
 

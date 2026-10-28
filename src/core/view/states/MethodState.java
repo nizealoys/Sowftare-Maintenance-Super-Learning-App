@@ -16,7 +16,7 @@ public class MethodState implements ViewState {
     Methode current;
     String courseName;
     JLabel titlePanel = new JLabel();
-    HashMap<String, Integer> difficulties = new HashMap<>();   // nom du cours -> difficulté
+    HashMap<String, Integer> difficulties = new HashMap<>();
 
     public MethodState(Viewer viewer) {
         this.viewer = viewer;
@@ -58,6 +58,7 @@ public class MethodState implements ViewState {
          * this.buttonTemps.add(exercices);
          *
          */
+
         JButton lessons = new JButton("Lessons");
         lessons.addActionListener((actionEvent) -> {
             LessonState ls = viewer.getState(Viewer.Page.LESSONS, LessonState.class);
@@ -74,6 +75,8 @@ public class MethodState implements ViewState {
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getPremiumState();
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).premiumPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);

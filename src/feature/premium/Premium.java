@@ -4,6 +4,8 @@ import src.core.model.Feature;
 import src.core.utils.ChildrenType;
 import src.feature.course.Course;
 
+import java.util.ArrayList;
+
 public class Premium extends Feature {
 
     public static final Premium instance = new Premium();
@@ -38,6 +40,7 @@ public class Premium extends Feature {
         System.out.println("premium desactivation: ");
 
         course.setCourseSlot(course.getOldCourseSlot());
+        course.setCourseList(new ArrayList<>());
         return super.desactivation();
     }
 
