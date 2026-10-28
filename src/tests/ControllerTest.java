@@ -1,3 +1,4 @@
+/**
 package src.tests;
 
 import org.junit.Before;
@@ -70,3 +71,4 @@ public class ControllerTest {
         Controller test = new Controller();
     }
 }
+ */

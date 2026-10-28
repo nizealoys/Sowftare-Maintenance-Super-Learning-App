@@ -10,11 +10,21 @@ public class Controller implements ControllerInterface {
     public static Controller instance = new Controller();
     private Boolean isEnable = false;
     private final Logs logs = Logs.getInstance();
-    private final Viewer observer = new Viewer();
+    private Viewer observer;
     private final Composite composite;
 
+
+    private Viewer getViewer() {
+        if (this.observer == null) {
+            this.observer = new Viewer();
+        }
+        return this.observer;
+    }
+
+
+
     private Controller() {
-        this.composite = Facade.getInstance().getComposite();
+        this.composite = Composite.getInstance();
     }
 
     public static Controller getInstance() {
@@ -29,21 +39,17 @@ public class Controller implements ControllerInterface {
 
     @Override
     public boolean enableUIView() {
-        observer.show();
+        getViewer().show();
         logs.addLog("User is Connected" + '\n');
-
         this.isEnable = true;
-
         return this.isEnable;
     }
 
     @Override
     public boolean disableUIView() {
-        observer.hide();
+        getViewer().hide();
         logs.addLog("User is users are Disconnected");
-
         this.isEnable = false;
-
         return !this.isEnable;
     }
 

@@ -101,6 +101,7 @@ public class Facade {
                         activationSuccess = false;
                     } else {
                         activationSuccess = feature.activation();
+                        System.out.println(activationSuccess);
                     }
                     if (activationSuccess) {
                         course.addCourse(courseContent);

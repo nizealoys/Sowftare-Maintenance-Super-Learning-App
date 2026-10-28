@@ -109,7 +109,7 @@ public class Feature implements FeatureInterface {
 
         if (activate) {
             System.out.println("Déjà activé");
-            return true;
+            return false;
         }
 
         if (parent != null && !parent.isActive()) {
