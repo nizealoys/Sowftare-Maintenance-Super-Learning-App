@@ -73,6 +73,26 @@ public class CourseState implements ViewState {
         System.out.print(this.courseSlot + "\n");
     }
 
+    public void accessToCourse(String courseName){
+        if(this.availableCourse.size() < this.courseSlot || this.availableCourse.contains(viewer.controller.getComposite().getFeature(courseName))){
+            if (!this.availableCourse.contains(viewer.controller.getComposite().getFeature(courseName))) {
+                String[] activation = new String[]{courseName};
+                String[] desactivateArgs = new String[0];
+                viewer.controller.activate(desactivateArgs, activation);
+            }
+            viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData(courseName));
+            viewer.getState(Viewer.Page.METHOD, MethodState.class).setName(courseName);
+            viewer.goTo(Viewer.Page.METHOD);
+        }else{
+            JOptionPane.showMessageDialog(
+                    this.frame,
+                    "Vous avez atteint le nombre maximum de cours.",
+                    "Limite atteinte",
+                    JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
+
     @Override
     public void build() {
 
@@ -85,53 +105,19 @@ public class CourseState implements ViewState {
 
         JButton cookingbutton = new JButton("Cooking");
         cookingbutton.addActionListener((actionEvent) -> {
-            //viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData("Cooking"));
-            viewer.getState(Viewer.Page.METHOD, MethodState.class).setName("Cooking");
-            viewer.goTo(Viewer.Page.METHOD);
+            //accessToCourse("Cooking");
         });
         this.buttonTemps.add(cookingbutton);
 
         JButton englishbutton = new JButton("English");
         englishbutton.addActionListener((actionEvent) -> {
-            if(this.availableCourse.size() < this.courseSlot || this.availableCourse.contains(viewer.controller.getComposite().getFeature("English"))) {
-                viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData("English"));
-                viewer.getState(Viewer.Page.METHOD, MethodState.class).setName("English");
-                this.availableCourse.add(viewer.controller.getComposite().getFeature("English"));
-                String[] activation = new String[]{"English"};
-                String[] desactivateArgs = new String[0];
-                viewer.controller.activate(desactivateArgs, activation);
-                this.courseSlot++;
-                viewer.goTo(Viewer.Page.METHOD);
-            }else {
-                JOptionPane.showMessageDialog(
-                        this.frame,
-                        "Vous avez atteint le nombre maximum de cours.",
-                        "Limite atteinte",
-                        JOptionPane.WARNING_MESSAGE
-                );
-            }
+                accessToCourse("English");
         });
         this.buttonTemps.add(englishbutton);
 
         JButton frenchbutton = new JButton("French");
         frenchbutton.addActionListener((actionEvent) -> {
-            if(this.availableCourse.size() < this.courseSlot || this.availableCourse.contains(viewer.controller.getComposite().getFeature("French"))){
-                viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData("French"));
-                viewer.getState(Viewer.Page.METHOD, MethodState.class).setName("French");
-                String[] activation = new String[]{"French"};
-                String[] desactivateArgs = new String[0];
-                viewer.controller.activate(desactivateArgs, activation);
-                this.availableCourse.add(viewer.controller.getComposite().getFeature("French"));
-                this.courseSlot++;
-                viewer.goTo(Viewer.Page.METHOD);
-            }else{
-                JOptionPane.showMessageDialog(
-                        this.frame,
-                        "Vous avez atteint le nombre maximum de cours.",
-                        "Limite atteinte",
-                        JOptionPane.WARNING_MESSAGE
-                );
-            }
+            accessToCourse("French");
         });
         this.buttonTemps.add(frenchbutton);
 
