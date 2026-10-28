@@ -1,4 +1,4 @@
-package src.feature.course.subfeature.type.language;
+package src.feature.course.subfeature.type;
 
 import java.util.ArrayList;
 import java.util.HashMap;

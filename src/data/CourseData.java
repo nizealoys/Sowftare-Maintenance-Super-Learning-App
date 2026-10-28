@@ -137,6 +137,67 @@ public class CourseData {
         values.add("sont");
 
         this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("Cooking");
+        values.add("1");
+        values.add("Wash your hands before handling ingredients to keep food preparation hygienic.");
+        values.add("1");
+        values.add("What should you do before preparing food?");
+        values.add("Wash your hands");
+
+        this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("Cooking");
+        values.add("1");
+        values.add("A clean work surface helps prevent contamination while cooking.");
+        values.add("2");
+        values.add("Why should you clean your work surface before cooking?");
+        values.add("To prevent contamination");
+
+        this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("Cooking");
+        values.add("1");
+        values.add("Raw meat should be kept separate from ready-to-eat food to avoid cross-contamination.");
+        values.add("3");
+        values.add("Where should raw meat be kept while preparing a salad?");
+        values.add("Separate from the salad ingredients");
+
+        this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("Cooking");
+        values.add("2");
+        values.add("Boiling cooks food in water that has reached a high temperature.");
+        values.add("1");
+        values.add("Which cooking method uses boiling water?");
+        values.add("Boiling");
+
+        this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("Cooking");
+        values.add("2");
+        values.add("Sautéing means cooking food quickly in a small amount of oil over medium-high heat.");
+        values.add("2");
+        values.add("What does sautéing usually require?");
+        values.add("A small amount of oil");
+
+        this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("Cooking");
+        values.add("2");
+        values.add("Braising combines searing with slow cooking in a small amount of liquid.");
+        values.add("3");
+        values.add("Which technique combines searing and slow cooking in liquid?");
+        values.add("Braising");
+
+        this.addCourseData(values);
+
     }
 
     public void addCourseData(HashMap<String, String> data) {

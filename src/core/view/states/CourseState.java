@@ -65,7 +65,7 @@ public class CourseState implements ViewState {
         }
 
         if (course == null) {
-            System.err.println("Course introuvable " );
+            System.err.println("Course introuvable ");
         }
         this.availableCourse = course.getCourseList();
         this.courseSlot = course.getCourseSlot();
@@ -73,8 +73,8 @@ public class CourseState implements ViewState {
         System.out.print(this.courseSlot + "\n");
     }
 
-    public void accessToCourse(String courseName){
-        if(this.availableCourse.size() < this.courseSlot || this.availableCourse.contains(viewer.controller.getComposite().getFeature(courseName))){
+    public void accessToCourse(String courseName) {
+        if (this.availableCourse.size() < this.courseSlot || this.availableCourse.contains(viewer.controller.getComposite().getFeature(courseName))) {
             if (!this.availableCourse.contains(viewer.controller.getComposite().getFeature(courseName))) {
                 String[] activation = new String[]{courseName};
                 String[] desactivateArgs = new String[0];
@@ -83,7 +83,7 @@ public class CourseState implements ViewState {
             viewer.getState(Viewer.Page.METHOD, MethodState.class).setData(getCourseData(courseName));
             viewer.getState(Viewer.Page.METHOD, MethodState.class).setName(courseName);
             viewer.goTo(Viewer.Page.METHOD);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(
                     this.frame,
                     "Vous avez atteint le nombre maximum de cours.",
@@ -93,8 +93,7 @@ public class CourseState implements ViewState {
         }
     }
 
-    @Override
-    public void build() {
+    private void build() {
 
         JButton main = new JButton("Main Page");
         main.addActionListener((actionEvent) -> {
@@ -105,13 +104,13 @@ public class CourseState implements ViewState {
 
         JButton cookingbutton = new JButton("Cooking");
         cookingbutton.addActionListener((actionEvent) -> {
-            //accessToCourse("Cooking");
+            accessToCourse("Cooking");
         });
         this.buttonTemps.add(cookingbutton);
 
         JButton englishbutton = new JButton("English");
         englishbutton.addActionListener((actionEvent) -> {
-                accessToCourse("English");
+            accessToCourse("English");
         });
         this.buttonTemps.add(englishbutton);
 
@@ -123,7 +122,7 @@ public class CourseState implements ViewState {
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getPremiumState();
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
             viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).premiumPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });

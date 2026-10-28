@@ -102,8 +102,8 @@ public class CLI {
         System.out.print("Cooking \n");
         System.out.print("English \n");
         System.out.print("French \n");
-        System.out.print("Enter the course name (e.g. Cooking, English, French): ");
-        System.out.print("Write other things to leave the course catalog: ");
+        System.out.print("Enter the course name (e.g. Cooking, English, French): \n");
+        System.out.print("Write other things to leave the course catalog: \n");
 
         String line = in.nextLine();
 
@@ -117,7 +117,7 @@ public class CLI {
     }
 
     private void courseMethode(Scanner in, String courseName) {
-        System.out.print("Course: " + courseName + "\n");
+        System.out.print("\n\nCourse: " + courseName + "\n");
         System.out.print("Workshop \n");
         System.out.print("Lessons \n");
         System.out.print("Enter the methode name (e.g. Workshop, Lessons): ");
@@ -142,7 +142,7 @@ public class CLI {
                 .distinct()
                 .collect(Collectors.toList());
 
-        System.out.print("Course: " + courseName + " Lessons \n");
+        System.out.print("\n\nCourse: " + courseName + " Lessons \n");
         System.out.print("Current Difficulty: " + currentDifficulty + "\n");
         System.out.print("Available Lessons: \n");
         for (int i = 0; i < topics.size(); i++) {
@@ -167,10 +167,11 @@ public class CLI {
                         == Difficulty.getInstance().getCurrentDifficultyLevel())
                 .collect(Collectors.toList());
 
-        System.out.print("Type 'Back' to return to the course lessons: \n");
+        System.out.print("\n\nType 'Back' to return to the course lessons: \n");
         if (qaList != null) {
             for (QA qa : qaList) {
-                System.out.print("Lesson: " + qa.getQuestion() + "\n");
+                System.out.print("Lesson: " + qa.getExplanation() + "\n");
+                System.out.print("Question: " + qa.getQuestion() + "\n");
 
                 String line = in.nextLine();
 
@@ -179,13 +180,13 @@ public class CLI {
                         System.out.print("Correct answer! \n");
                         break;
                     } else if (!line.equals("Back")) {
-                        System.out.print("Incorrect answer. Try again " + qa.getExplanation() + "\n");
+                        System.out.print("Incorrect answer. Try : " + qa.getAnswer() + "\n\n");
                     }
                     line = in.nextLine();
                 }
             }
         } else {
-            System.out.print("No lesson found for the selected topic and difficulty.\n");
+            System.out.print("No lesson found for the selected topic and difficulty.\n\n");
         }
 
     }

@@ -23,7 +23,7 @@ public class Logs {
     public String[] getLogs() {
         String[] logArray = new String[logs.size()];
         for (int i = 0; i < logs.size(); i++) {
-            logArray[i] = logs.get(i).getLog() + " (Timestamp: " + logs.get(i).getTimestamp() + ")";
+            logArray[i] = logs.get(i).getLog() + " (Timestamp: " + logs.get(i).getTimestamp() + ")\n";
         }
         return logArray;
     }

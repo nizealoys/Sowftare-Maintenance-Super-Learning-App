@@ -2,7 +2,6 @@ package src.core.view.states;
 
 import java.util.ArrayList;
 import javax.swing.*;
-
 import src.core.model.Composite;
 import src.core.model.Feature;
 import src.core.model.Iterator;
@@ -45,8 +44,7 @@ public class ShopState implements ViewState {
         return premium.isActive();
     }
 
-    @Override
-    public void build() {
+    private void build() {
 
         JButton mainbutton = new JButton("Main Page");
         mainbutton.addActionListener((actionEvent) -> {
@@ -60,7 +58,7 @@ public class ShopState implements ViewState {
         //this.buttonTemps.add(new JButton("Ad free"));
         JButton activateButton = new JButton("Activate Premium");
         activateButton.addActionListener((actionEvent) -> {
-            if(!this.getPremiumState()) {
+            if (!this.getPremiumState()) {
                 String[] activation = new String[]{"Premium"};
                 String[] desactivateArgs = new String[0];
                 viewer.controller.activate(desactivateArgs, activation);
@@ -70,7 +68,7 @@ public class ShopState implements ViewState {
                         "Premium activated",
                         JOptionPane.WARNING_MESSAGE
                 );
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(
                         this.frame,
                         "Vous avez déjà activé Premium.",
@@ -83,8 +81,8 @@ public class ShopState implements ViewState {
 
         JButton desactivateButton = new JButton("Desactivate Premium");
         desactivateButton.addActionListener((actionEvent) -> {
-            if(this.getPremiumState()) {
-                String[] desactivateArgs  = new String[]{"Premium"};
+            if (this.getPremiumState()) {
+                String[] desactivateArgs = new String[]{"Premium"};
                 String[] activation = new String[0];
                 viewer.controller.activate(desactivateArgs, activation);
                 JOptionPane.showMessageDialog(
@@ -93,7 +91,7 @@ public class ShopState implements ViewState {
                         "Premium desactivated",
                         JOptionPane.WARNING_MESSAGE
                 );
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(
                         this.frame,
                         "Vous avez déjà desactivé Premium.",
@@ -106,7 +104,7 @@ public class ShopState implements ViewState {
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getPremiumState();
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
             viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).premiumPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });

@@ -2,14 +2,13 @@ package src.core.view.states;
 
 import java.util.ArrayList;
 import javax.swing.*;
-
 import src.core.model.Composite;
 import src.core.model.Feature;
 import src.core.model.Iterator;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
-import src.feature.course.CourseContent;
-import src.feature.course.subfeature.method.Methode;
+import src.feature.achievement.Achievement;
+import src.feature.achievement.AchievementElement;
 import src.feature.premium.Premium;
 
 public class ProfileState implements ViewState {
@@ -19,6 +18,8 @@ public class ProfileState implements ViewState {
     JPanel panel;
     JLabel premiumLabel = new JLabel();
     ArrayList<JButton> buttonTemps;
+    Boolean premiumActive;
+    ArrayList<AchievementElement> achievements = new ArrayList<>();
 
     public ProfileState(Viewer viewer) {
         this.viewer = viewer;
@@ -28,33 +29,44 @@ public class ProfileState implements ViewState {
         build();
     }
 
-    public Boolean getPremiumState() {
+    public void getData() {
         //Code généré par IA
         Iterator<Feature> it = Composite.getInstance().createIterator();
         Premium premium = null;
+        Achievement achievement = null;
 
         while (it.hasNext()) {
             Feature f = it.next();
             if (f instanceof Premium p) {
                 premium = p;
+            } else if (f instanceof Achievement a) {
+                achievement = a;
             }
         }
 
         if (premium == null) {
             System.err.println("premium introuvable");
-            return null;
+            return;
         }
-        System.out.print(premium.isActive());
-        return premium.isActive();
+        this.premiumActive = premium.isActive();
+
+        if (achievement == null) {
+            System.err.println("achievement introuvable");
+            return;
+        }
+        this.achievements = achievement.getAchievementElements();
     }
 
-    public void premiumPanel(){
-        this.premiumLabel.setText("Premium: " + this.getPremiumState());
-        System.out.print("je suis passé: " + this.getPremiumState());
+    public void premiumPanel() {
+        String text = new String("Premium: " + this.premiumActive + "\n              ");
+
+        for (AchievementElement ae : this.achievements) {
+            text += ae.getName() + ": " + ae.getDescription() + ": " + ae.isAchieved() + "\n           ";
+        }
+        this.premiumLabel.setText(text);
     }
 
-    @Override
-    public void build() {
+    private void build() {
 
         JButton main = new JButton("Main Page");
         main.addActionListener((actionEvent) -> {
@@ -62,7 +74,6 @@ public class ProfileState implements ViewState {
         });
 
         this.buttonTemps.add(main);
-
 
     }
 

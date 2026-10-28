@@ -39,8 +39,7 @@ public class MethodState implements ViewState {
         this.difficulties.put(this.courseName, d);
     }
 
-    @Override
-    public void build() {
+    private void build() {
 
         JButton main = new JButton("Main Page");
         main.addActionListener((actionEvent) -> {
@@ -50,14 +49,6 @@ public class MethodState implements ViewState {
         this.buttonTemps.add(main);
 
         this.buttonTemps.add(new JButton("Workshop"));
-
-        /**
-         * JButton exercices = new JButton("Exercices");
-         * exercices.addActionListener((actionEvent) -> {
-         * viewer.goTo(Viewer.Page.EXERCICES); });
-         * this.buttonTemps.add(exercices);
-         *
-         */
 
         JButton lessons = new JButton("Lessons");
         lessons.addActionListener((actionEvent) -> {
@@ -75,7 +66,7 @@ public class MethodState implements ViewState {
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getPremiumState();
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
             viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).premiumPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });

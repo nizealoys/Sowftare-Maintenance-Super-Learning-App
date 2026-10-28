@@ -31,8 +31,7 @@ public class DifficultyState implements ViewState {
         viewer.goTo(Viewer.Page.LESSONS);
     }
 
-    @Override
-    public void build() {
+    private void build() {
 
         JButton easy = new JButton("Easy");
         easy.addActionListener(e -> choose(1));
