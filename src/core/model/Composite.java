@@ -46,7 +46,7 @@ public class Composite implements Aggregate {
         return root;
     }
 
-    @Override 
+    @Override
     public String toString() {
         StringBuilder model = new StringBuilder();
         model.append(root.toString());

@@ -1,31 +1,35 @@
 package src.feature.course.subfeature.type.language;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import src.data.CourseData;
 import src.feature.course.CourseContent;
 import src.feature.course.QA;
-import java.util.ArrayList;
 
 public class English extends CourseContent {
+
+    public static final English instance = new English();
     ArrayList<QA> qaList;
 
-    public English() {
-        super("English", false, false);
-        this.qaList = new ArrayList<>();
-        testQA();
+    private English() {
+        ArrayList<HashMap<String, String>> data = CourseData.getInstance().getCourseData();
+        super(data, "English", false, false);
+        // testQA();
     }
 
-    public English(ArrayList<QA> qaList) {
-        super(qaList, "English", false, false);
+    public static English getInstance() {
+        return instance;
     }
 
-    public void testQA(){
-        QA a = new QA("Pomme", "POMME", 1,1, "J'aime les pommes");
-        QA b = new QA("Pomme2", "POMME2", 1,2, "J'aime les pommes");
-        QA c = new QA("Foot", "FOOTBALL", 2,1, "surtout le football");
-        QA d = new QA("VISCA", "BARCA", 2,3, "surtout le football");
+    public void testQA() {
+        QA a = new QA(1, "POMME", 1, "Pomme", "J'aime les pommes");
+        QA b = new QA(2, "POMME2", 1, "Pomme2", "J'aime les pommes");
+        QA c = new QA(1, "FOOTBALL", 2, "Foot", "surtout le football");
+        QA d = new QA(3, "BARCA", 2, "VISCA", "surtout le football");
         this.qaList.add(a);
         this.qaList.add(b);
         this.qaList.add(c);
         this.qaList.add(d);
     }
-    
+
 }

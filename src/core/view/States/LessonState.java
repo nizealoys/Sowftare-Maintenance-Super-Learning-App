@@ -1,4 +1,4 @@
-package src.core.view.States;
+package src.core.view.states;
 
 import src.core.view.ViewState;
 import src.core.view.Viewer;
@@ -8,14 +8,14 @@ import src.feature.course.subfeature.method.Methode;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class LessonState implements ViewState{
+public class LessonState implements ViewState {
 
     Viewer viewer;
     JFrame frame;
     JPanel panel;
     ArrayList<JButton> buttonTemps;
 
-    public LessonState(Viewer viewer){
+    public LessonState(Viewer viewer) {
         this.viewer = viewer;
         this.frame = viewer.frame;
         this.panel = viewer.panel;
@@ -42,14 +42,14 @@ public class LessonState implements ViewState{
 
     @Override
     public void handleRequest() {
-        for (JButton b : this.buttonTemps){
+        for (JButton b : this.buttonTemps) {
             this.panel.add(b);
         }
         this.frame.repaint();
         this.frame.revalidate();
     }
 
-    public ArrayList<JButton> getTopic(){
+    public ArrayList<JButton> getTopic() {
         return new ArrayList<JButton>();
     }
 }

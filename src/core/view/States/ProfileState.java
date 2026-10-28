@@ -1,17 +1,18 @@
-package src.core.view.States;
+package src.core.view.states;
 
+import java.util.ArrayList;
+import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
-import javax.swing.*;
-import java.util.ArrayList;
 
 public class ProfileState implements ViewState {
+
     Viewer viewer;
     JFrame frame;
     JPanel panel;
     ArrayList<JButton> buttonTemps;
 
-    public ProfileState(Viewer viewer){
+    public ProfileState(Viewer viewer) {
         this.viewer = viewer;
         this.frame = viewer.frame;
         this.panel = viewer.panel;
@@ -32,7 +33,7 @@ public class ProfileState implements ViewState {
 
     @Override
     public void handleRequest() {
-        for (JButton b : this.buttonTemps){
+        for (JButton b : this.buttonTemps) {
             this.panel.add(b);
         }
         this.frame.repaint();

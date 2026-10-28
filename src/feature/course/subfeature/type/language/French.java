@@ -1,16 +1,21 @@
 package src.feature.course.subfeature.type.language;
 
-import src.feature.course.CourseContent;
-import src.feature.course.QA;
 import java.util.ArrayList;
+import java.util.HashMap;
+import src.data.CourseData;
+import src.feature.course.CourseContent;
 
 public class French extends CourseContent {
-    public French() {
-        super("French", false, false);
+
+    public static final French instance = new French();
+
+    private French() {
+        ArrayList<HashMap<String, String>> data = CourseData.getInstance().getCourseData();
+        super(data, "French", false, false);
     }
 
-    public French(ArrayList<QA> qaList) {
-        super(qaList, "French", false, false);
+    public static French getInstance() {
+        return instance;
     }
-    
+
 }

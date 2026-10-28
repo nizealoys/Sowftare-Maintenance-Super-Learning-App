@@ -5,16 +5,17 @@ import src.core.model.Feature;
 import src.core.utils.ChildrenType;
 
 public class Achievement extends Feature {
+
+    public static final Achievement instance = new Achievement();
     public ArrayList<AchievementElement> achievementElements;
 
-    public Achievement() {
+    private Achievement() {
         super("Achievement", true, true, ChildrenType.NONE);
         this.achievementElements = new ArrayList<>();
     }
 
-    public Achievement(String name, boolean mandatory, boolean activate, ChildrenType childrenType, ArrayList<AchievementElement> achievementElements) {
-        super(name, mandatory, activate, childrenType);
-        this.achievementElements = achievementElements;
+    public static Achievement getInstance() {
+        return instance;
     }
 
     public ArrayList<AchievementElement> getAchievementElements() {
@@ -72,12 +73,12 @@ public class Achievement extends Feature {
 
     @Override
     public String toString() {
-        return "Achievement{" +
-                "name='" + getName() + '\'' +
-                ", mandatory=" + isMandatory() +
-                ", activate=" + isActive() +
-                ", childrenType='" + getChildrenType() + '\'' +
-                ", achievementElements=" + achievementElements +
-                '}';
+        return "Achievement{"
+                + "name='" + getName() + '\''
+                + ", mandatory=" + isMandatory()
+                + ", activate=" + isActive()
+                + ", childrenType='" + getChildrenType() + '\''
+                + ", achievementElements=" + achievementElements
+                + '}';
     }
 }

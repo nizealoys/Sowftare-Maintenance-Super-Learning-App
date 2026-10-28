@@ -1,17 +1,13 @@
 package src.core.view;
 
-import java.awt.Color;
 import java.util.EnumMap;
 import java.util.Map;
-
 import javax.swing.*;
-
 import src.core.model.Facade;
 import src.core.observer.ObserverController;
 import src.core.observer.ObserverView;
 import src.core.observer.SubjectView;
-import src.core.view.States.*;
-import src.core.view.ViewState;
+import src.core.view.states.*;
 
 public class Viewer implements ObserverView, SubjectView {
 
@@ -81,13 +77,21 @@ public class Viewer implements ObserverView, SubjectView {
     }
 
     @Override
-    public void show()  { SwingUtilities.invokeLater(() -> frame.setVisible(true)); }
+    public void show() {
+        SwingUtilities.invokeLater(() -> frame.setVisible(true));
+    }
 
     @Override
-    public void hide()  { SwingUtilities.invokeLater(() -> frame.setVisible(false)); }
+    public void hide() {
+        SwingUtilities.invokeLater(() -> frame.setVisible(false));
+    }
 
     @Override
-    public void close() { SwingUtilities.invokeLater(frame::dispose); }
+    public void close() {
+        SwingUtilities.invokeLater(frame::dispose);
+    }
 
-    public int getUserId() { return this.userId; }
+    public int getUserId() {
+        return this.userId;
+    }
 }

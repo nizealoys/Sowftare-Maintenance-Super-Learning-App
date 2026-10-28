@@ -1,10 +1,9 @@
-package src.core.view.States;
+package src.core.view.states;
 
+import java.util.ArrayList;
+import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
-import javax.swing.*;
-import java.util.ArrayList;
-
 
 public class CoinState implements ViewState {
 
@@ -13,7 +12,7 @@ public class CoinState implements ViewState {
     JPanel panel;
     ArrayList<JButton> buttonTemps;
 
-    public CoinState(Viewer viewer){
+    public CoinState(Viewer viewer) {
         this.viewer = viewer;
         this.frame = viewer.frame;
         this.panel = viewer.panel;
@@ -44,7 +43,7 @@ public class CoinState implements ViewState {
 
     @Override
     public void handleRequest() {
-        for (JButton b : this.buttonTemps){
+        for (JButton b : this.buttonTemps) {
             this.panel.add(b);
         }
         this.frame.repaint();

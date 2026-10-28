@@ -2,8 +2,12 @@ package src.core.model;
 
 import java.util.ArrayList;
 import src.core.log.Logs;
+import src.feature.course.Course;
+import src.feature.course.CourseContent;
+import src.feature.premium.Premium;
 
 public class Facade {
+
     private final static Facade facade = new Facade();
     private final Logs logs = Logs.getInstance();
     //private final Composite composite = Composite.getInstance();
@@ -13,7 +17,9 @@ public class Facade {
         return facade;
     }
 
-    public Composite getComposite() {return this.composite;}
+    public Composite getComposite() {
+        return this.composite;
+    }
 
     // 0 good
     // -1 all failed
@@ -33,7 +39,7 @@ public class Facade {
             return -1;
         } else if (!desativationFailedActivations.isEmpty() && !activationFailedActivations.isEmpty()) {
             return 1;
-        } else if (!desativationFailedActivations.isEmpty() ) {
+        } else if (!desativationFailedActivations.isEmpty()) {
             return 2;
         } else {
             return 3;
@@ -47,9 +53,27 @@ public class Facade {
 
         for (String featureName : deactivations) {
             feature = composite.getFeature(featureName);
-            
+
             if (feature != null) {
-                activationSuccess = feature.desactivation();
+
+                if (feature instanceof CourseContent courseContent) {
+                    Course course = Course.getInstance();
+                    activationSuccess = feature.desactivation();
+                    if (activationSuccess) {
+                        course.removeCourse(courseContent);
+                    }
+                    System.out.println("Deactivating: " + featureName + " - Success: " + activationSuccess);
+
+                } else if (feature instanceof Premium) {
+                    Course course = Course.getInstance();
+                    activationSuccess = feature.desactivation();
+                    for (Feature courseContent : course.getCourseList()) {
+                        courseContent.desactivation();
+                    }
+
+                } else {
+                    activationSuccess = feature.desactivation();
+                }
 
                 logs.addLog("Deactivating: " + featureName + " - Success: " + activationSuccess);
 
@@ -71,10 +95,25 @@ public class Facade {
             feature = composite.getFeature(featureName);
 
             if (feature != null) {
-                activationSuccess = feature.activation();
+                if (feature instanceof CourseContent courseContent) {
+                    Course course = Course.getInstance();
+
+                    if (course.getCourseSlot() == course.getCourseList().size()) {
+                        activationSuccess = false;
+                    } else {
+                        activationSuccess = feature.activation();
+                    }
+                    if (activationSuccess) {
+                        course.addCourse(courseContent);
+                    }
+                    System.out.println("Activating: " + featureName + " - Success: " + activationSuccess);
+
+                } else {
+                    activationSuccess = feature.activation();
+                }
 
                 logs.addLog("Activating: " + featureName + " - Success: " + activationSuccess);
-                
+
                 if (!activationSuccess) {
                     activationFailedActivations.add(featureName);
                 }
@@ -83,7 +122,9 @@ public class Facade {
 
         return activationFailedActivations;
     }
-    public String toString(){
+
+    @Override
+    public String toString() {
         return this.composite.getFeature("SuperLearningApp").toString();
     }
 }

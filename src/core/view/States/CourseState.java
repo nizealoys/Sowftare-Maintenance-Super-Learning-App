@@ -1,11 +1,9 @@
-package src.core.view.States;
+package src.core.view.states;
 
+import java.util.ArrayList;
+import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
-import src.feature.course.subfeature.method.Methode;
-
-import javax.swing.*;
-import java.util.ArrayList;
 
 public class CourseState implements ViewState {
 
@@ -14,7 +12,7 @@ public class CourseState implements ViewState {
     JPanel panel;
     ArrayList<JButton> buttonTemps;
 
-    public CourseState ( Viewer viewer){
+    public CourseState(Viewer viewer) {
         this.viewer = viewer;
         this.frame = viewer.frame;
         this.panel = viewer.panel;
@@ -57,14 +55,13 @@ public class CourseState implements ViewState {
         this.buttonTemps.add(profilbutton);
     }
 
-    /**public Methode getContent(String Course){
-        this.viewer.model.getComposite().createIterator();
-    }
+    /**
+     * public Methode getContent(String Course){
+     * this.viewer.model.getComposite().createIterator(); }
      */
-
     @Override
     public void handleRequest() {
-        for (JButton b : this.buttonTemps){
+        for (JButton b : this.buttonTemps) {
             this.panel.add(b);
         }
         this.frame.repaint();

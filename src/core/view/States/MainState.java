@@ -1,9 +1,9 @@
-package src.core.view.States;
+package src.core.view.states;
 
+import java.util.ArrayList;
+import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
-import javax.swing.*;
-import java.util.ArrayList;
 
 public class MainState implements ViewState {
 
@@ -12,18 +12,14 @@ public class MainState implements ViewState {
     JPanel panel;
     ArrayList<JButton> buttonTemps;
 
-
-    public MainState(Viewer viewer){
+    public MainState(Viewer viewer) {
         /**
-         * methode qui init l'etat.
-         * JFrame frame = Frame du Viewer, le même pour chaque state
-         * JPanel panel = Panel du Viewer, le même pour chaque state
+         * methode qui init l'etat. JFrame frame = Frame du Viewer, le même pour
+         * chaque state JPanel panel = Panel du Viewer, le même pour chaque
+         * state
          */
 
-
-
         //ajouter frame.validate & frame.repaint
-
         this.viewer = viewer;
         this.frame = viewer.frame;
         this.panel = viewer.panel;
@@ -31,7 +27,7 @@ public class MainState implements ViewState {
         build();
     }
 
-    public void build(){
+    public void build() {
         /**
          * Fonction qui dessine l'etat
          */
@@ -41,7 +37,6 @@ public class MainState implements ViewState {
             viewer.goTo(Viewer.Page.COIN);
         });
         this.buttonTemps.add(coinButton);
-
 
         JButton shopButton = new JButton("Shop");
         shopButton.addActionListener((actionEvent) -> {
@@ -72,10 +67,9 @@ public class MainState implements ViewState {
          */
     }
 
-
     @Override
     public void handleRequest() {
-        for (JButton b : this.buttonTemps){
+        for (JButton b : this.buttonTemps) {
             this.panel.add(b);
         }
         this.frame.repaint();

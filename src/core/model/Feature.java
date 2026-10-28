@@ -5,6 +5,7 @@ import src.core.log.Logs;
 import src.core.utils.ChildrenType;
 
 public class Feature implements FeatureInterface {
+
     private final String name;
     private final boolean mandatory;
     private boolean activate;
@@ -32,28 +33,40 @@ public class Feature implements FeatureInterface {
     }
 
      */
-
-
     @Override
-    public String getName() {return this.name;}
-    
-    @Override
-    public boolean isMandatory() {return this.mandatory;}
-    
-    @Override
-    public boolean isActive() {return this.activate;}
-    
-    @Override
-    public Feature getParent() {return this.parent;}
-    
-    @Override
-    public ArrayList<Feature> getChildren() {return this.children;}
+    public String getName() {
+        return this.name;
+    }
 
     @Override
-    public void setParent(Feature Parent) {this.parent = Parent;}
+    public boolean isMandatory() {
+        return this.mandatory;
+    }
 
     @Override
-    public String getChildrenType() {return childrenType.name();}
+    public boolean isActive() {
+        return this.activate;
+    }
+
+    @Override
+    public Feature getParent() {
+        return this.parent;
+    }
+
+    @Override
+    public ArrayList<Feature> getChildren() {
+        return this.children;
+    }
+
+    @Override
+    public void setParent(Feature Parent) {
+        this.parent = Parent;
+    }
+
+    @Override
+    public String getChildrenType() {
+        return childrenType.name();
+    }
 
     @Override
     public boolean desactivation() {
@@ -65,7 +78,7 @@ public class Feature implements FeatureInterface {
 
         if (mandatory && parent != null && parent.isActive()) {
             System.out.println(
-                name + " ne peut pas être désactivé"
+                    name + " ne peut pas être désactivé"
             );
             return false;
         }
@@ -84,7 +97,6 @@ public class Feature implements FeatureInterface {
         activate = false;
     }
 
-
     @Override
     public boolean activation() {
 
@@ -95,7 +107,7 @@ public class Feature implements FeatureInterface {
 
         if (parent != null && !parent.isActive()) {
             System.out.println(
-                name + " : activez d'abord " + parent.getName()
+                    name + " : activez d'abord " + parent.getName()
             );
             return false;
         }
@@ -105,7 +117,7 @@ public class Feature implements FeatureInterface {
             for (Feature c : parent.children) {
                 if (c != this && c.isActive()) {
                     System.out.println(
-                        c.getName() + " est déjà activé"
+                            c.getName() + " est déjà activé"
                     );
                     return false;
                 }
@@ -162,7 +174,7 @@ public class Feature implements FeatureInterface {
         for (Feature c : children) {
             if (!c.getChildren().isEmpty()) {
                 model.append(" ").append(c.toString());
-            }else{
+            } else {
                 model.append(" ").append(c.getName());
             }
         }
