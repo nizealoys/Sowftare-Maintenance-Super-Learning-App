@@ -2,6 +2,7 @@ package src.core.controller;
 
 import src.core.log.Logs;
 import src.core.model.Composite;
+import src.core.model.CompositeBuilder;
 import src.core.model.Facade;
 import src.core.view.Viewer;
 
@@ -14,7 +15,8 @@ public class Controller implements ControllerInterface {
     private final Composite composite;
 
     private Controller() {
-        this.composite = Facade.getInstance().getComposite();
+        CompositeBuilder.getInstance();
+        this.composite = Composite.getInstance();
     }
 
     public static Controller getInstance() {

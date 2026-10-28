@@ -7,7 +7,7 @@ public class CourseData {
 
     public static final CourseData instance = new CourseData();
     private final ArrayList<HashMap<String, String>> courseData;
-    private final String[] keys = {"course", "topic", "topicExplanation", "difficulty", "question", "answer"};
+    public final String[] keys = {"course", "topic", "topicExplanation", "difficulty", "question", "answer"};
 
     public static CourseData getInstance() {
         return instance;
@@ -15,10 +15,10 @@ public class CourseData {
 
     private CourseData() {
         this.courseData = new ArrayList<>();
-        fakeData();
+        CourseData();
     }
 
-    private void fakeData() {
+    private void CourseData() {
 
         ArrayList<String> values = new ArrayList<>();
         values.add("English");

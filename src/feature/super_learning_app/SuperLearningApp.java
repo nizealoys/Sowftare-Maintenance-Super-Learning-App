@@ -8,7 +8,7 @@ public class SuperLearningApp extends Feature {
     public static final SuperLearningApp instance = new SuperLearningApp();
 
     private SuperLearningApp() {
-        super("SuperLearningApp", false, false, ChildrenType.NONE);
+        super("SuperLearningApp", true, true, ChildrenType.NONE);
     }
 
     public static SuperLearningApp getInstance() {

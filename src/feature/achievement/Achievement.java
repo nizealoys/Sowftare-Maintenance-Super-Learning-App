@@ -1,8 +1,10 @@
 package src.feature.achievement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import src.core.model.Feature;
 import src.core.utils.ChildrenType;
+import src.data.AchievementData;
 
 public class Achievement extends Feature {
 
@@ -10,8 +12,14 @@ public class Achievement extends Feature {
     public ArrayList<AchievementElement> achievementElements;
 
     private Achievement() {
+        AchievementData data = AchievementData.getInstance();
+
         super("Achievement", true, true, ChildrenType.NONE);
         this.achievementElements = new ArrayList<>();
+        for (HashMap<String, String> elementData : data.getAchievementData()) {
+            AchievementElement element = new AchievementElement(elementData);
+            this.achievementElements.add(element);
+        }
     }
 
     public static Achievement getInstance() {

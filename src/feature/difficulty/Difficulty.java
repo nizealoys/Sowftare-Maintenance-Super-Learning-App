@@ -31,6 +31,14 @@ public class Difficulty extends Feature {
         return currentDifficultyIndex;
     }
 
+    public void setCurrentDifficultyLevel(int level) {
+        if (level >= 1 && level <= difficulties.length) {
+            this.currentDifficultyIndex = level - 1;
+        } else {
+            throw new IllegalArgumentException("Invalid difficulty level: " + level);
+        }
+    }
+
     public void setCurrentDifficultyIndex(int index) {
         if (index >= 0 && index < difficulties.length) {
             this.currentDifficultyIndex = index;

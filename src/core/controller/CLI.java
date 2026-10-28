@@ -1,7 +1,15 @@
 package src.core.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import src.core.utils.Utils;
+import src.feature.achievement.Achievement;
+import src.feature.achievement.AchievementElement;
+import src.feature.course.CourseContent;
+import src.feature.course.QA;
+import src.feature.difficulty.Difficulty;
 
 public class CLI {
 
@@ -11,7 +19,7 @@ public class CLI {
         controller = Controller.getInstance();
     }
 
-    public String instructions(int i) {
+    public String instruction() {
 
         System.out.print("\n List of Instructions: \n");
 
@@ -21,15 +29,22 @@ public class CLI {
         instruction += "MODEL: SHOW THE CURRENT USER MODEL \n";
         instruction += "STOP: SHUT DOWN THE CONSOLE \n";
         instruction += "LOG: PRINT THE LOG \n";
+        instruction += "ACTIVATE: ACTIVATE A SPECIFIC FEATURE \n";
+        instruction += "DEACTIVATE: DEACTIVATE A SPECIFIC FEATURE \n";
+        instruction += "COURSE: SHOW THE COURSE CONTENT \n";
 
         return instruction;
+    }
+
+    public Controller getController() {
+        return controller;
     }
 
     public void command() {
         Scanner in = new Scanner(System.in);
 
         while (true) {
-            System.out.print(instructions(0));
+            System.out.print(instruction());
             String line = in.nextLine();
             switch (line) {
                 case "ENABLE" -> {
@@ -52,6 +67,29 @@ public class CLI {
                 case "LOG" ->
                     System.out.print(Arrays.toString(controller.getStateAsLog()));
 
+                case "ACTIVATE" -> {
+                    System.out.print("Enter the features to activate (e.g. Premium): ");
+                    String[] activations = in.nextLine().split(",");
+                    controller.activate(new String[0], activations);
+                }
+
+                case "DEACTIVATE" -> {
+                    System.out.print("Enter the features to deactivate (e.g. Premium): ");
+                    String[] deactivations = in.nextLine().split(",");
+                    controller.activate(deactivations, new String[0]);
+                }
+
+                case "COURSE" -> {
+                    courseCatalog(in);
+                }
+
+                case "BADGE" -> {
+                    List<AchievementElement> achievementElements = ((Achievement) controller.getComposite().getFeature("Achievement")).getAchievementElements();
+                    for (AchievementElement element : achievementElements) {
+                        System.out.println("Badge: " + element.getName() + ", Description: " + element.getDescription() + ", Achieved: " + element.isAchieved());
+                    }
+                }
+
                 default ->
                     System.out.println("Unknown command " + line);
 
@@ -59,7 +97,96 @@ public class CLI {
         }
     }
 
-    public Controller getController() {
-        return controller;
+    private void courseCatalog(Scanner in) {
+        System.out.print("Course Catalog: \n");
+        System.out.print("Cooking \n");
+        System.out.print("English \n");
+        System.out.print("French \n");
+        System.out.print("Enter the course name (e.g. Cooking, English, French): ");
+        System.out.print("Write other things to leave the course catalog: ");
+
+        String line = in.nextLine();
+
+        if ((line.equals("Cooking") || line.equals("English") || line.equals("French"))
+                && controller.getComposite().getFeature(line).isActive()) {
+            courseMethode(in, line);
+        } else {
+            System.out.print("Leaving the course catalog \n");
+        }
+
+    }
+
+    private void courseMethode(Scanner in, String courseName) {
+        System.out.print("Course: " + courseName + "\n");
+        System.out.print("Workshop \n");
+        System.out.print("Lessons \n");
+        System.out.print("Enter the methode name (e.g. Workshop, Lessons): ");
+        System.out.print("Write other things to leave the course methode (e.g. Back): ");
+
+        String line = in.nextLine();
+
+        if (line.equals("Workshop") || line.equals("Lessons")) {
+            courseLessons(in, courseName);
+        } else {
+            System.out.print("Leaving the course methode \n");
+        }
+    }
+
+    private void courseLessons(Scanner in, String courseName) {
+        CourseContent lesson = (CourseContent) controller.getComposite().getFeature(courseName);
+        String currentDifficulty = Difficulty.getInstance().getCurrentDifficulty();
+        List<Integer> topics = lesson.getQAList().stream()
+                .filter(qa -> qa.getDifficulty()
+                        == Difficulty.getInstance().getCurrentDifficultyLevel())
+                .map(QA::getTopic)
+                .distinct()
+                .collect(Collectors.toList());
+
+        System.out.print("Course: " + courseName + " Lessons \n");
+        System.out.print("Current Difficulty: " + currentDifficulty + "\n");
+        System.out.print("Available Lessons: \n");
+        for (int i = 0; i < topics.size(); i++) {
+            System.out.print("Topic " + topics.get(i) + "\n");
+        }
+        System.out.print(
+                "Enter the number of the lesson you want to access (e.g. 1 or 2): ");
+
+        String line = in.nextLine();
+
+        if (Utils.isNum(line) && topics.contains(Integer.valueOf(line))) {
+            executeLesson(in, lesson, Integer.parseInt(line));
+        } else {
+            System.out.print("Leaving the course lessons \n");
+        }
+    }
+
+    private void executeLesson(Scanner in, CourseContent lesson, int topic) {
+        List<QA> qaList = lesson.getQAList().stream()
+                .filter(q -> q.getTopic() == topic
+                        && q.getDifficulty()
+                        == Difficulty.getInstance().getCurrentDifficultyLevel())
+                .collect(Collectors.toList());
+
+        System.out.print("Type 'Back' to return to the course lessons: \n");
+        if (qaList != null) {
+            for (QA qa : qaList) {
+                System.out.print("Lesson: " + qa.getQuestion() + "\n");
+
+                String line = in.nextLine();
+
+                while (!line.equals("Back")) {
+                    if (!line.equals("Back") && line.equals(qa.getAnswer())) {
+                        System.out.print("Correct answer! \n");
+                        break;
+                    } else if (!line.equals("Back")) {
+                        System.out.print("Incorrect answer. Try again " + qa.getExplanation() + "\n");
+                    }
+                    line = in.nextLine();
+                }
+            }
+        } else {
+            System.out.print("No lesson found for the selected topic and difficulty.\n");
+        }
+
     }
 }

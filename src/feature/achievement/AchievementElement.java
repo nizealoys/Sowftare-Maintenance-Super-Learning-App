@@ -1,6 +1,9 @@
 package src.feature.achievement;
 
+import java.util.HashMap;
+
 public class AchievementElement {
+
     final private String name;
     final private String description;
     private boolean achieved;
@@ -17,6 +20,12 @@ public class AchievementElement {
         this.achieved = achievementElement.achieved;
     }
 
+    public AchievementElement(HashMap<String, String> data) {
+        this.name = data.get("name");
+        this.description = data.get("description");
+        this.achieved = Boolean.parseBoolean(data.get("achieved"));
+    }
+
     public String getName() {
         return name;
     }
@@ -24,6 +33,7 @@ public class AchievementElement {
     public String getDescription() {
         return description;
     }
+
     public void setAchieved(boolean achieved) {
         this.achieved = achieved;
     }
@@ -34,10 +44,10 @@ public class AchievementElement {
 
     @Override
     public String toString() {
-        return "AchievementElement{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", achieved=" + achieved +
-                '}';
+        return "AchievementElement{"
+                + "name='" + name + '\''
+                + ", description='" + description + '\''
+                + ", achieved=" + achieved
+                + '}';
     }
 }

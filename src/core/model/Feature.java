@@ -68,8 +68,8 @@ public class Feature implements FeatureInterface {
         return childrenType.name();
     }
 
-    public Feature getFeature(String name){
-        if(name.equals(this.getName())){
+    public Feature getFeature(String name) {
+        if (name.equals(this.getName())) {
             return this;
         }
         return null;
@@ -177,12 +177,14 @@ public class Feature implements FeatureInterface {
     @Override
     public String toString() {
         StringBuilder model = new StringBuilder();
-        model.append(this.getName()).append(" [");
-        for (Feature c : children) {
-            if (!c.getChildren().isEmpty()) {
-                model.append(" ").append(c.toString());
-            } else {
-                model.append(" ").append(c.getName());
+        if (this.isActive()) {
+            model.append(this.getName()).append(" [");
+            for (Feature c : children) {
+                if (!c.getChildren().isEmpty()) {
+                    model.append(" ").append(c.toString());
+                } else if (c.isActive()) {
+                    model.append(" ").append(c.getName());
+                }
             }
         }
         model.append(" ]");

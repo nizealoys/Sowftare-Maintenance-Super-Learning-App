@@ -1,17 +1,15 @@
 package src;
 
 import java.io.FileNotFoundException;
-import src.core.controller.Controller;
 import src.core.controller.CLI;
+import src.core.model.CompositeBuilder;
 
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        CLI cli = new CLI();
-        String[] desactivateArgs = new String[0];
-        String[] activateArgs = new String[]{"SuperLearningApp", "Premium", "Method", "Course", "Type", "Language", "English"};
-        cli.getController().activate(desactivateArgs, activateArgs);
+        CompositeBuilder compositeBuilder = CompositeBuilder.getInstance();
 
-        cli.command();
+        CLI cli = new CLI();
+        cli.command();   // lance la boucle console
     }
 }

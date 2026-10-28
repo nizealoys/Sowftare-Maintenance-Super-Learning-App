@@ -26,7 +26,9 @@ public class QA {
         this.answer = data.get("answer");
     }
 
-    public int getDifficulty(){return this.difficulty;}
+    public int getDifficulty() {
+        return this.difficulty;
+    }
 
     public int getTopic() {
         return topic;
