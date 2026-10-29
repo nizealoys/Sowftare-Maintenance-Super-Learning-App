@@ -30,7 +30,6 @@ public class ProfileState implements ViewState {
     }
 
     public void getData() {
-        //Code généré par IA
         Iterator<Feature> it = Composite.getInstance().createIterator();
         Premium premium = null;
         Achievement achievement = null;

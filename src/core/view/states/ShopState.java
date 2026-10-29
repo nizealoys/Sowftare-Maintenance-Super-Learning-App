@@ -25,7 +25,6 @@ public class ShopState implements ViewState {
     }
 
     public Boolean getPremiumState() {
-        //Code généré par IA
         Iterator<Feature> it = Composite.getInstance().createIterator();
         Premium premium = null;
 
