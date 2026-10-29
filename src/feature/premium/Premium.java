@@ -3,6 +3,7 @@ package src.feature.premium;
 import java.util.ArrayList;
 import src.core.model.Feature;
 import src.core.utils.ChildrenType;
+import src.feature.achievement.Achievement;
 import src.feature.course.Course;
 
 public class Premium extends Feature {

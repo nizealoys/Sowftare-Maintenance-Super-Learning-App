@@ -39,7 +39,7 @@ public class WIPState implements ViewState {
             JButton profilbutton = new JButton("User Profile");
             profilbutton.addActionListener((actionEvent) -> {
                 viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
-                viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).premiumPanel();
+                viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).infoPanel();
                 viewer.goTo(Viewer.Page.PROFILE);
             });
             this.buttonTemps.add(profilbutton);

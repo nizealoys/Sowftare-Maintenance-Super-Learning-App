@@ -1,8 +1,9 @@
-/**
+
 package src.tests;
 
 import org.junit.Before;
 import org.junit.Test;
+import src.core.controller.CLI;
 import src.core.controller.Controller;
 
 import static org.junit.Assert.assertEquals;
@@ -11,6 +12,8 @@ import static org.junit.Assert.assertTrue;
 import src.core.model.Composite;
 import src.core.utils.ChildrenType;
 import src.core.model.Feature;
+
+import java.io.IOException;
 
 public class ControllerTest {
 
@@ -50,7 +53,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void enableUIViewUnitTest() {
+    public void enableUIViewUnitTest() throws IOException {
         Controller test = new Controller();
         test.enableUIView();
         assertTrue(test.logsContains(test.getStateAsLog(), "User is Connected"));
@@ -58,7 +61,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void disableUIViewUnitTest() {
+    public void disableUIViewUnitTest() throws IOException {
         Controller test = new Controller();
         test.enableUIView();
         test.disableUIView();
@@ -68,7 +71,6 @@ public class ControllerTest {
 
     @Test
     public void getStateAsLogTest() {
-        Controller test = new Controller();
+        CLI test = new CLI();
     }
 }
- */

@@ -71,21 +71,19 @@ public class MethodState implements ViewState {
         });
         this.buttonTemps.add(lessons);
 
+        JButton difficultyButton = new JButton("Set Difficulty");
+        difficultyButton.addActionListener((actionEvent) ->{
+            viewer.goTo(Viewer.Page.DIFFICULTY);
+        });
+        this.buttonTemps.add(difficultyButton);
+
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
             viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).premiumPanel();
+            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).infoPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);
-
-        JButton difficultyButton = new JButton("Set Difficulty");
-        profilbutton.addActionListener((actionEvent) ->{
-            viewer.goTo(Viewer.Page.DIFFICULTY);
-
-        });
-
-        this.buttonTemps.add(difficultyButton);
     }
 
     @Override

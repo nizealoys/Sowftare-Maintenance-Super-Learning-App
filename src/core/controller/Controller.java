@@ -23,7 +23,7 @@ public class Controller implements ControllerInterface {
         return this.observer;
     }
 
-    private Controller() {
+    public Controller() {
         CompositeBuilder.getInstance();
         this.composite = Composite.getInstance();
     }
@@ -49,7 +49,7 @@ public class Controller implements ControllerInterface {
     @Override
     public boolean disableUIView() throws IOException {
         getViewer().hide();
-        logs.addLog("User is users are Disconnected");
+        logs.addLog("User is Disconnected");
         this.isEnable = false;
         return !this.isEnable;
     }

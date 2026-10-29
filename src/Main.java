@@ -1,6 +1,8 @@
 package src;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import src.core.controller.CLI;
 import src.core.model.CompositeBuilder;
 
@@ -12,6 +14,11 @@ public class Main {
         // French french = French.getInstance();
 
         // System.out.println(french.getQAList());
-        cli.command();   // lance la boucle console
+            try{
+                cli.command();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
     }
 }

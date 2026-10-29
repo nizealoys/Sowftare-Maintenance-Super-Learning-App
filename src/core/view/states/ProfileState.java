@@ -1,5 +1,6 @@
 package src.core.view.states;
 
+import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import src.core.model.Composite;
@@ -16,7 +17,6 @@ public class ProfileState implements ViewState {
     Viewer viewer;
     JFrame frame;
     JPanel panel;
-    JLabel premiumLabel = new JLabel();
     ArrayList<JButton> buttonTemps;
     Boolean premiumActive;
     ArrayList<AchievementElement> achievements = new ArrayList<>();
@@ -59,15 +59,25 @@ public class ProfileState implements ViewState {
         this.achievements = achievement.getAchievementElements();
     }
 
-    public void premiumPanel() {
-        String text = new String();
+    public JPanel infoPanel() {
 
-        text += "Premium: " + this.premiumActive + "\n              ";
+        JPanel content = new JPanel();
+        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+        content.add(new JLabel("Premium: " + this.premiumActive));
 
+        content.add(new JLabel("Achievement: "));
         for (AchievementElement ae : this.achievements) {
-            text += ae.getName() + ": " + ae.getDescription() + ": " + ae.isAchieved() + "\n           ";
+            if(ae.isAchieved()){
+                JLabel ach = new JLabel(ae.getName() + " : " + ae.getDescription() + " : " + "ACHIEVED");
+                content.add(ach);
+            }
+            else{
+                JLabel ach = new JLabel(ae.getName() + " : " + ae.getDescription() + " : " + "NOT ACHIEVED");
+                ach.setForeground(Color.GRAY);
+                content.add(ach);
+            }
         }
-        this.premiumLabel.setText(text);
+        return content;
     }
 
     private void build() {
@@ -83,10 +93,19 @@ public class ProfileState implements ViewState {
 
     @Override
     public void handleRequest() {
+
+        JPanel content = infoPanel();
+
+        JPanel buttons = new JPanel();
         for (JButton b : this.buttonTemps) {
-            this.panel.add(b);
+            buttons.add(b);
         }
-        this.panel.add(this.premiumLabel);
+
+        JPanel root = new JPanel(new BorderLayout());
+        root.add(buttons, BorderLayout.NORTH);  // boutons en haut
+        root.add(content, BorderLayout.CENTER); // infos en dessous
+
+        this.panel.add(root);
         this.frame.repaint();
         this.frame.revalidate();
     }
