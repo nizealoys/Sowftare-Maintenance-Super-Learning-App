@@ -37,10 +37,13 @@ public class ProfileState implements ViewState {
 
         while (it.hasNext()) {
             Feature f = it.next();
-            if (f instanceof Premium p) {
-                premium = p;
-            } else if (f instanceof Achievement a) {
-                achievement = a;
+            switch (f) {
+                case Premium p ->
+                    premium = p;
+                case Achievement a ->
+                    achievement = a;
+                default -> {
+                }
             }
         }
 
@@ -58,7 +61,9 @@ public class ProfileState implements ViewState {
     }
 
     public void premiumPanel() {
-        String text = new String("Premium: " + this.premiumActive + "\n              ");
+        String text = new String();
+
+        text += "Premium: " + this.premiumActive + "\n              ";
 
         for (AchievementElement ae : this.achievements) {
             text += ae.getName() + ": " + ae.getDescription() + ": " + ae.isAchieved() + "\n           ";

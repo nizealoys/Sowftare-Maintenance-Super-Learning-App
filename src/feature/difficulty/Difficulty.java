@@ -5,7 +5,7 @@ import src.core.utils.ChildrenType;
 
 public class Difficulty extends Feature {
 
-    public static final Difficulty instance = new Difficulty();
+    private static final Difficulty instance = new Difficulty();
     public static final String[] difficulties = {"Easy", "Medium", "Hard"};
     private int currentDifficultyIndex;
 

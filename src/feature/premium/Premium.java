@@ -1,14 +1,13 @@
 package src.feature.premium;
 
+import java.util.ArrayList;
 import src.core.model.Feature;
 import src.core.utils.ChildrenType;
 import src.feature.course.Course;
 
-import java.util.ArrayList;
-
 public class Premium extends Feature {
 
-    public static final Premium instance = new Premium();
+    private static final Premium instance = new Premium();
 
     private Premium() {
         super("Premium", false, false, ChildrenType.NONE);

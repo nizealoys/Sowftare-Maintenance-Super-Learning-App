@@ -8,7 +8,7 @@ import src.core.view.Viewer;
 
 public class Controller implements ControllerInterface {
 
-    public static Controller instance = new Controller();
+    private final static Controller instance = new Controller();
     private Boolean isEnable = false;
     private final Logs logs = Logs.getInstance();
     private Viewer observer;

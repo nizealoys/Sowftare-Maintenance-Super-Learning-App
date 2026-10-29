@@ -5,7 +5,7 @@ import src.core.utils.ChildrenType;
 
 public class Type extends Feature {
 
-    public static final Type instance = new Type();
+    private static final Type instance = new Type();
 
     private Type() {
         super("Type", true, true, ChildrenType.OR);

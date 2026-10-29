@@ -11,14 +11,14 @@ public class AchievementData {
 
     private AchievementData() {
         achievementData = new ArrayList<>();
-        achivementsData();
+        getData();
     }
 
     public static AchievementData getInstance() {
         return instance;
     }
 
-    private void achivementsData() {
+    private void getData() {
         ArrayList<String> values = new ArrayList<>();
         values.add("First Steps");
         values.add("Complete your first course.");

@@ -4,10 +4,9 @@ import java.util.EnumMap;
 import java.util.Map;
 import javax.swing.*;
 import src.core.controller.Controller;
-import src.core.model.Composite;
 import src.core.view.states.*;
 
-public class Viewer {
+public final class Viewer {
 
     public Controller controller;
 
@@ -18,7 +17,7 @@ public class Viewer {
     private ViewState currentState;
     public JFrame frame;
     public JPanel panel;
-    String userInput;
+    // String userInput;
     //JButton buttonTemp;
 
     // Controller observer;
@@ -39,7 +38,7 @@ public class Viewer {
         //this.frame.setVisible(true); // show the window
         //Composite c = controller.getComposite();
         System.out.println("\n controller = " + controller);
-        Thread.dumpStack();
+        // Thread.dumpStack();
         this.InitAllStates();
         this.goTo(Page.MAIN);
 

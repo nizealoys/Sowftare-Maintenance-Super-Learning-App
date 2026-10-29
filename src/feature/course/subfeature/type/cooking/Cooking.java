@@ -7,7 +7,7 @@ import src.feature.course.CourseContent;
 
 public class Cooking extends CourseContent {
 
-    public static final Cooking instance = new Cooking();
+    private static final Cooking instance = new Cooking();
 
     private Cooking() {
         ArrayList<HashMap<String, String>> data = CourseData.getInstance().getCourseData();

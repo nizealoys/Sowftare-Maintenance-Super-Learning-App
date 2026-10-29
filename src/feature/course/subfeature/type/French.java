@@ -7,7 +7,7 @@ import src.feature.course.CourseContent;
 
 public class French extends CourseContent {
 
-    public static final French instance = new French();
+    private static final French instance = new French();
 
     private French() {
         ArrayList<HashMap<String, String>> data = CourseData.getInstance().getCourseData();

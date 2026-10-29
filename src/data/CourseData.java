@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class CourseData {
 
-    public static final CourseData instance = new CourseData();
+    private static final CourseData instance = new CourseData();
     private final ArrayList<HashMap<String, String>> courseData;
     public final String[] keys = {"course", "topic", "topicExplanation", "difficulty", "question", "answer"};
 
@@ -15,10 +15,10 @@ public class CourseData {
 
     private CourseData() {
         this.courseData = new ArrayList<>();
-        CourseData();
+        getData();
     }
 
-    private void CourseData() {
+    private void getData() {
 
         ArrayList<String> values = new ArrayList<>();
         values.add("English");

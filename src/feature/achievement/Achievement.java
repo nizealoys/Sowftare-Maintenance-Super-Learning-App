@@ -8,7 +8,7 @@ import src.data.AchievementData;
 
 public class Achievement extends Feature {
 
-    public static final Achievement instance = new Achievement();
+    private static final Achievement instance = new Achievement();
     public ArrayList<AchievementElement> achievementElements;
 
     private Achievement() {

@@ -6,7 +6,7 @@ import src.core.utils.ChildrenType;
 
 public class Course extends Feature {
 
-    public static final Course instance = new Course();
+    private static final Course instance = new Course();
     private ArrayList<Feature> courseList;
     private int CourseSlot;
     private int oldCourseSlot;

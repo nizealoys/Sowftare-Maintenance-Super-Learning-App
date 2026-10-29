@@ -8,7 +8,7 @@ import src.feature.course.QA;
 
 public class Methode extends Feature { //modifer le nom
 
-    public static final Methode instance = new Methode();
+    private static final Methode instance = new Methode();
 
     public Lessons lessons;
     public Exercice exercices;
