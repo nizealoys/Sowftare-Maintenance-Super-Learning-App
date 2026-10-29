@@ -18,6 +18,40 @@ public class CourseData {
         getData();
     }
 
+    private void getSmallData() {
+
+        ArrayList<String> values = new ArrayList<>();
+        values.add("English");
+        values.add("1");
+        values.add("Use 'an' before a word that starts with a vowel sound.");
+        values.add("1");
+        values.add("Complete the sentence: I eat ___ apple every day.");
+        values.add("an");
+
+        this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("French");
+        values.add("1");
+        values.add("Use 'an' before a word that starts with a vowel sound.");
+        values.add("2");
+        values.add("Complete the sentence: She is ___ honest person.");
+        values.add("an");
+
+        this.addCourseData(values);
+
+        values = new ArrayList<>();
+        values.add("Cooking");
+        values.add("1");
+        values.add("'A' is used before a consonant sound, while 'an' is used before a vowel sound.");
+        values.add("3");
+        values.add("Complete the sentence: He studies at ___ European university.");
+        values.add("a");
+
+        this.addCourseData(values);
+
+    }
+
     private void getData() {
 
         ArrayList<String> values = new ArrayList<>();

@@ -68,10 +68,13 @@ public class ExerciceState implements ViewState {
             for (int i = 0; i < this.exercice.size(); i++) {
                 if (!correction(this.fields.get(i), this.exercice.get(i))) {
                     this.correction.add(new JLabel("Correction " + (i + 1) + ": " + this.exercice.get(i).getAnswer()));
+                } else {
+                    viewer.controller.completeQA(this.exercice.get(i));
                 }
             }
             if (this.correction.isEmpty()) {
                 this.correction.add(new JLabel("ALL YOUR ANSWERS ARE CORRECT"));
+
             } else {
                 this.correction.add(new JLabel("YOU GOT AT LEAST ONE WRONG ANSWER"));
             }

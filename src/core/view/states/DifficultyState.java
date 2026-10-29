@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
-import src.feature.course.subfeature.method.Methode;
 
 public class DifficultyState implements ViewState {
 

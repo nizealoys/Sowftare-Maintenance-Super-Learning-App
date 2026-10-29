@@ -28,4 +28,22 @@ public abstract class CourseContent extends Feature {
     public ArrayList<QA> getQAList() {
         return qaList;
     }
+
+    public void completeQA(QA qa) {
+        for (QA q : this.qaList) {
+            if (q.equals(qa)) {
+                q.setIsCompleted(true);
+                break;
+            }
+        }
+    }
+
+    public boolean isAllCompleted() {
+        for (QA qa : this.qaList) {
+            if (!qa.getIsCompleted()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
