@@ -3,6 +3,7 @@ package src.feature.course;
 import java.util.ArrayList;
 import src.core.model.Feature;
 import src.core.utils.ChildrenType;
+import src.feature.difficulty.Difficulty;
 
 public class Course extends Feature {
 
@@ -42,6 +43,7 @@ public class Course extends Feature {
 
     public void addCourse(Feature course) {
         this.courseList.add(course);
+        Difficulty.getInstance().setDifficulty(course.getName(), 0);
     }
 
     public void removeCourse(Feature course) {

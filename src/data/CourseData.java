@@ -108,6 +108,8 @@ public class CourseData {
         values.add("Complète la phrase : Nous visitons ___ ancienne maison.");
         values.add("une");
 
+        this.addCourseData(values);
+
         values = new ArrayList<>();
         values.add("French");
         values.add("2");

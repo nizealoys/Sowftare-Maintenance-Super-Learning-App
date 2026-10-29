@@ -29,7 +29,6 @@ public class CourseState implements ViewState {
     }
 
     public Methode getCourseData(String courseName) {
-        //Code généré par IA
         Iterator<Feature> it = Composite.getInstance().createIterator();
         CourseContent course = null;
         Methode methode = null;
@@ -53,7 +52,6 @@ public class CourseState implements ViewState {
     }
 
     public void getCourseAvailable() {
-        //Code généré par IA
         Iterator<Feature> it = Composite.getInstance().createIterator();
         Course course = null;
 
@@ -66,6 +64,7 @@ public class CourseState implements ViewState {
 
         if (course == null) {
             System.err.println("Course introuvable ");
+            return;
         }
         this.availableCourse = course.getCourseList();
         this.courseSlot = course.getCourseSlot();

@@ -1,5 +1,6 @@
 package src.feature.difficulty;
 
+import java.util.HashMap;
 import src.core.model.Feature;
 import src.core.utils.ChildrenType;
 
@@ -7,43 +8,30 @@ public class Difficulty extends Feature {
 
     private static final Difficulty instance = new Difficulty();
     public static final String[] difficulties = {"Easy", "Medium", "Hard"};
-    private int currentDifficultyIndex;
+    private final HashMap<String, Integer> difficultyMap;
 
     private Difficulty() {
         super("Difficulty", false, false, ChildrenType.NONE);
-        this.currentDifficultyIndex = 0;
+        difficultyMap = new HashMap<>();
     }
 
     public static Difficulty getInstance() {
         return instance;
     }
 
-    public String getCurrentDifficulty() {
-        return difficulties[currentDifficultyIndex];
+    public int getDifficulty(String courseName) {
+        return difficultyMap.getOrDefault(courseName, 0);
     }
 
-    // Get the current difficulty level as an integer (1 for Easy, 2 for Medium, 3 for Hard)
-    public int getCurrentDifficultyLevel() {
-        return currentDifficultyIndex + 1;
+    public int getDifficultyLevel(String courseName) {
+        return difficultyMap.getOrDefault(courseName, 0) + 1; // Return 1-based difficulty level
     }
 
-    public int getCurrentDifficultyIndex() {
-        return currentDifficultyIndex;
-    }
-
-    public void setCurrentDifficultyLevel(int level) {
-        if (level >= 1 && level <= difficulties.length) {
-            this.currentDifficultyIndex = level - 1;
-        } else {
-            throw new IllegalArgumentException("Invalid difficulty level: " + level);
+    public void setDifficulty(String courseName, int difficulty) {
+        if (difficulty < 0 || difficulty >= difficulties.length) {
+            throw new IllegalArgumentException("Invalid difficulty level: " + difficulty);
         }
+        difficultyMap.put(courseName, difficulty);
     }
 
-    public void setCurrentDifficultyIndex(int index) {
-        if (index >= 0 && index < difficulties.length) {
-            this.currentDifficultyIndex = index;
-        } else {
-            throw new IllegalArgumentException("Invalid difficulty index: " + index);
-        }
-    }
 }
