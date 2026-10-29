@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import src.core.log.Logs;
 import src.core.utils.ChildrenType;
 
-public class Feature implements FeatureInterface {
+public class Feature {
 
     private final String name;
     private final boolean mandatory;
@@ -33,37 +33,37 @@ public class Feature implements FeatureInterface {
     }
 
      */
-    @Override
+
     public String getName() {
         return this.name;
     }
 
-    @Override
+
     public boolean isMandatory() {
         return this.mandatory;
     }
 
-    @Override
+
     public boolean isActive() {
         return this.activate;
     }
 
-    @Override
+
     public Feature getParent() {
         return this.parent;
     }
 
-    @Override
+
     public ArrayList<Feature> getChildren() {
         return this.children;
     }
 
-    @Override
+
     public void setParent(Feature Parent) {
         this.parent = Parent;
     }
 
-    @Override
+
     public String getChildrenType() {
         return childrenType.name();
     }
@@ -75,7 +75,7 @@ public class Feature implements FeatureInterface {
         return null;
     }
 
-    @Override
+
     public boolean desactivation() {
 
         if (!activate) {
@@ -104,7 +104,7 @@ public class Feature implements FeatureInterface {
         activate = false;
     }
 
-    @Override
+
     public boolean activation() {
 
         if (activate) {
@@ -143,7 +143,7 @@ public class Feature implements FeatureInterface {
         return true;
     }
 
-    @Override
+
     public void add(Feature child) {
 
         if (child == null) {
@@ -174,7 +174,7 @@ public class Feature implements FeatureInterface {
         }
     }
 
-    @Override
+
     public String toString() {
         StringBuilder model = new StringBuilder();
         if (this.isActive()) {

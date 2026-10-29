@@ -3,14 +3,13 @@ package src.tests;
 
 import org.junit.Before;
 import org.junit.Test;
-import src.core.controller.CLI;
 import src.core.controller.Controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import src.core.model.Composite;
-import src.core.utils.ChildrenType;
+import src.core.model.CompositeBuilder;
 import src.core.model.Feature;
 
 import java.io.IOException;
@@ -21,42 +20,59 @@ public class ControllerTest {
 
     @Before
     public void setUp() {
+        CompositeBuilder cb = CompositeBuilder.getInstance();
         Composite composite = Composite.getInstance();
-        composite.setRoot(new Feature("Feature1", true, true, ChildrenType.NONE));
-        composite.getRoot().add(new Feature("Feature2", false, true, ChildrenType.NONE));
-        composite.getRoot().add(new Feature("Feature3", false, true, ChildrenType.NONE));
-        composite.getRoot().getChildren().get(0).add(new Feature("Feature4", false, true, ChildrenType.NONE));
+        System.out.println(composite);
         this.controller = Controller.getInstance();
     }
 
     @Test
-    public void activateFeaturesUnitTest() {
-        Feature feature2 = Composite.getInstance().getFeature("Feature2");
-        Feature feature4 = Composite.getInstance().getFeature("Feature4");
+    public void activateOptionalFeatureUnitTest() {
 
-        assertTrue(Composite.getInstance().getRoot().isActive());
-        assertFalse(feature2.isActive());
-        assertFalse(feature4.isActive());
+        Feature english = Composite.getInstance().getFeature("English");
+        controller.activate(new String[]{}, new String[]{"English"});
+        assertTrue(english.isActive());
 
-        controller.activate(new String[]{}, new String[]{"Feature4"});
-        assertFalse(feature4.isActive());
-        controller.activate(new String[]{}, new String[]{"Feature2"});
-        assertTrue(feature2.isActive());
-        assertFalse(feature4.isActive());
+    }
 
-        controller.activate(new String[]{}, new String[]{"Feature4"});
-        assertTrue(feature4.isActive());
+    @Test
+    public void deactivateMandatoryFeatureUnitTest() {
+        Feature Course = Composite.getInstance().getFeature("Course");
+        controller.activate( new String[]{"Course"}, new String[]{});
+        assertTrue(Course.isActive());
 
-        controller.activate(new String[]{"Feature2"}, new String[]{});
-        assertFalse(feature2.isActive());
-        assertFalse(feature4.isActive());
+    }
+
+    @Test
+    public void deactivateOptionalFeatureUnitTest() {
+        Feature english = Composite.getInstance().getFeature("English");
+        controller.activate(new String[]{}, new String[]{"english"});
+        controller.activate(new String[]{"english"} ,new String[]{});
+        assertFalse(english.isActive());
+
+    }
+
+    @Test
+    public void activateMandatoryFeatureUnitTest() {
+        Feature Course = Composite.getInstance().getFeature("Course");
+        controller.activate(new String[]{}, new String[]{"Course"});
+        assertTrue(Course.isActive());
+
     }
 
     @Test
     public void enableUIViewUnitTest() throws IOException {
         boolean enableTest = controller.enableUIView();
         assertTrue(enableTest);
-        //System.exit(0);
+
+    }
+
+    @Test
+    public void multipleEnablesUIViewUnitTest() throws IOException {
+        controller.enableUIView();
+        boolean enableTest = controller.enableUIView();
+        assertFalse(enableTest);
+
     }
 
     @Test
@@ -64,7 +80,16 @@ public class ControllerTest {
         controller.enableUIView();
         boolean disableTest = controller.disableUIView();
         assertTrue(disableTest);
-        //System.exit(0);
+
+    }
+
+    @Test
+    public void uselessDisableUIViewUnitTest() throws IOException {
+        controller.enableUIView();
+        controller.disableUIView();
+        boolean disableTest = controller.disableUIView();
+        assertFalse(disableTest);
+
     }
 
     @Test

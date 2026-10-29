@@ -86,19 +86,27 @@ public final class Viewer {
         return new JLabel("Image introuvable");
     }
 
-    public boolean show() {
-        if (frame.isVisible()){
-            return false;
+    private void runOnEdt(Runnable r) {
+        if (SwingUtilities.isEventDispatchThread()) {
+            r.run();
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(r);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
-        SwingUtilities.invokeLater(() -> frame.setVisible(true));
+    }
+
+    public boolean show() {
+        if (frame.isVisible()) return false;
+        runOnEdt(() -> frame.setVisible(true));
         return true;
     }
 
     public boolean hide() {
-        if (!frame.isVisible()){
-            return false;
-        }
-        SwingUtilities.invokeLater(() -> frame.setVisible(false));
+        if (!frame.isVisible()) return false;
+        runOnEdt(() -> frame.setVisible(false));
         return true;
     }
 
