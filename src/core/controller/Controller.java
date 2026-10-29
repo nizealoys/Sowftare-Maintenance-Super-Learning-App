@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Controller implements ControllerInterface {
 
     private final static Controller instance = new Controller();
-    private Boolean isEnable = false;
     private final Logs logs = Logs.getInstance();
     private Viewer observer;
     private final Composite composite;
@@ -23,7 +22,7 @@ public class Controller implements ControllerInterface {
         return this.observer;
     }
 
-    public Controller() {
+    private Controller() {
         CompositeBuilder.getInstance();
         this.composite = Composite.getInstance();
     }
@@ -34,24 +33,17 @@ public class Controller implements ControllerInterface {
 
     @Override
     public int activate(String[] deactivations, String[] activations) {
-        logs.addLog("Activating: " + String.join(", ", activations) + " and deactivating: " + String.join(", ", deactivations));
         return Facade.getInstance().activate(deactivations, activations);
     }
 
     @Override
     public boolean enableUIView() throws IOException {
-        getViewer().show();
-        logs.addLog("User is Connected" + '\n');
-        this.isEnable = true;
-        return this.isEnable;
+        return getViewer().show();
     }
 
     @Override
     public boolean disableUIView() throws IOException {
-        getViewer().hide();
-        logs.addLog("User is Disconnected");
-        this.isEnable = false;
-        return !this.isEnable;
+        return getViewer().hide();
     }
 
     @Override
