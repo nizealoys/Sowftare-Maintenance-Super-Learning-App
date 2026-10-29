@@ -30,6 +30,8 @@ public class Facade {
         ArrayList<String> desativationFailedActivations;
         ArrayList<String> activationFailedActivations;
 
+        logs.addLog("Activating: " + String.join(", ", activations) + " and deactivating: " + String.join(", ", deactivations));
+
         desativationFailedActivations = desactivation(deactivations);
         activationFailedActivations = activation(activations);
 

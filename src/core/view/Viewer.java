@@ -86,12 +86,20 @@ public final class Viewer {
         return new JLabel("Image introuvable");
     }
 
-    public void show() {
+    public boolean show() {
+        if (frame.isVisible()){
+            return false;
+        }
         SwingUtilities.invokeLater(() -> frame.setVisible(true));
+        return true;
     }
 
-    public void hide() {
+    public boolean hide() {
+        if (!frame.isVisible()){
+            return false;
+        }
         SwingUtilities.invokeLater(() -> frame.setVisible(false));
+        return true;
     }
 
     public void close() {

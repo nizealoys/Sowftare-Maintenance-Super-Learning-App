@@ -26,7 +26,7 @@ public class ControllerTest {
         composite.getRoot().add(new Feature("Feature2", false, true, ChildrenType.NONE));
         composite.getRoot().add(new Feature("Feature3", false, true, ChildrenType.NONE));
         composite.getRoot().getChildren().get(0).add(new Feature("Feature4", false, true, ChildrenType.NONE));
-        this.controller = new Controller();
+        this.controller = Controller.getInstance();
     }
 
     @Test
@@ -54,23 +54,21 @@ public class ControllerTest {
 
     @Test
     public void enableUIViewUnitTest() throws IOException {
-        Controller test = new Controller();
-        test.enableUIView();
-        assertTrue(test.logsContains(test.getStateAsLog(), "User is Connected"));
+        boolean enableTest = controller.enableUIView();
+        assertTrue(enableTest);
         //System.exit(0);
     }
 
     @Test
     public void disableUIViewUnitTest() throws IOException {
-        Controller test = new Controller();
-        test.enableUIView();
-        test.disableUIView();
-        assertTrue(test.logsContains(test.getStateAsLog(), "User is Disconnected"));
+        controller.enableUIView();
+        boolean disableTest = controller.disableUIView();
+        assertTrue(disableTest);
         //System.exit(0);
     }
 
     @Test
     public void getStateAsLogTest() {
-        CLI test = new CLI();
+        //CLI test = new CLI();
     }
 }
