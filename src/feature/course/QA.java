@@ -9,6 +9,7 @@ public class QA {
     private final int difficulty;
     private final String question;
     private final String answer;
+    private Boolean isCompleted;
 
     public QA(int topic, String topicExplanation, int difficulty, String question, String answer) {
         this.topic = topic;
@@ -16,6 +17,7 @@ public class QA {
         this.difficulty = difficulty;
         this.question = question;
         this.answer = answer;
+        this.isCompleted = false;
     }
 
     public QA(HashMap<String, String> data) {
@@ -24,6 +26,7 @@ public class QA {
         this.difficulty = Integer.parseInt(data.get("difficulty"));
         this.question = data.get("question");
         this.answer = data.get("answer");
+        this.isCompleted = false;
     }
 
     public int getDifficulty() {
@@ -44,6 +47,14 @@ public class QA {
 
     public String getAnswer() {
         return answer;
+    }
+
+    public Boolean getIsCompleted() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(Boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
     @Override

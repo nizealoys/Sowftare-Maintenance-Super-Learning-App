@@ -2,6 +2,8 @@ package src.core.model;
 
 import java.util.ArrayList;
 import src.core.log.Logs;
+import src.feature.achievement.Achievement;
+import src.feature.achievement.AchievementElement;
 import src.feature.course.Course;
 import src.feature.course.CourseContent;
 import src.feature.premium.Premium;
@@ -115,6 +117,15 @@ public class Facade {
 
                 if (!activationSuccess) {
                     activationFailedActivations.add(featureName);
+                }
+
+                if (activationSuccess && feature instanceof Premium) {
+                    Achievement achievement = Achievement.getInstance();
+                    AchievementElement elem = achievement.getAchievementElement("Premium User");
+
+                    if (elem != null && !elem.isAchieved()) {
+                        elem.setAchieved(true);
+                    }
                 }
             }
         }
