@@ -6,6 +6,7 @@ import src.feature.achievement.Achievement;
 import src.feature.achievement.AchievementElement;
 import src.feature.course.Course;
 import src.feature.course.CourseContent;
+import src.feature.course.QA;
 import src.feature.premium.Premium;
 
 public class Facade {
@@ -127,6 +128,7 @@ public class Facade {
 
                     if (elem != null && !elem.isAchieved()) {
                         elem.setAchieved(true);
+                        logs.addLog("Achievement unlocked: " + elem.getName());
                     }
                 }
             }
@@ -138,5 +140,43 @@ public class Facade {
     @Override
     public String toString() {
         return this.composite.getFeature("SuperLearningApp").toString();
+    }
+
+    public void completeQA(QA qa) {
+        Achievement achievement = Achievement.getInstance();
+        AchievementElement elem = achievement.getAchievementElement("First Steps");
+        ArrayList<CourseContent> courseContents = new ArrayList<>();
+
+        Iterator<Feature> iterator = composite.createIterator();
+
+        while (iterator.hasNext()) {
+            Feature feature = iterator.next();
+            if (feature instanceof CourseContent courseContent) {
+                courseContents.add(courseContent);
+            }
+        }
+
+        qa.setIsCompleted(true);
+        logs.addLog("QA completed: " + qa.getQuestion());
+        if (elem != null && !elem.isAchieved()) {
+            elem.setAchieved(true);
+            logs.addLog("Achievement unlocked: " + elem.getName());
+        }
+        if (allCourseCompleted(courseContents)) {
+            AchievementElement elem2 = achievement.getAchievementElement("Quiz Master");
+            if (elem2 != null && !elem2.isAchieved()) {
+                elem2.setAchieved(true);
+                logs.addLog("Achievement unlocked: " + elem2.getName());
+            }
+        }
+    }
+
+    private boolean allCourseCompleted(ArrayList<CourseContent> courseContents) {
+        for (CourseContent courseContent : courseContents) {
+            if (!courseContent.isAllCompleted()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

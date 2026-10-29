@@ -1,17 +1,19 @@
 package src.core.controller;
 
+import java.io.IOException;
 import src.core.log.Logs;
 import src.core.model.Composite;
 import src.core.model.CompositeBuilder;
 import src.core.model.Facade;
 import src.core.view.Viewer;
-
-import java.io.IOException;
+import src.feature.course.CourseContent;
+import src.feature.course.QA;
 
 public class Controller implements ControllerInterface {
 
     private final static Controller instance = new Controller();
     private final Logs logs = Logs.getInstance();
+    private final Facade facade = Facade.getInstance();
     private Viewer observer;
     private final Composite composite;
 
@@ -33,7 +35,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public int activate(String[] deactivations, String[] activations) {
-        return Facade.getInstance().activate(deactivations, activations);
+        return facade.activate(deactivations, activations);
     }
 
     @Override
@@ -62,6 +64,10 @@ public class Controller implements ControllerInterface {
 
     public Composite getComposite() {
         return this.composite;
+    }
+
+    public void completeQA(QA qa) {
+        facade.completeQA(qa);
     }
 
 }

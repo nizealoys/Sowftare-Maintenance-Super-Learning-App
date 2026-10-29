@@ -214,6 +214,7 @@ public class CLI {
                 while (!line.equals("Back")) {
                     if (!line.equals("Back") && line.equals(qa.getAnswer())) {
                         System.out.print("Correct answer! \n");
+                        controller.completeQA(qa);
                         break;
                     } else if (!line.equals("Back")) {
                         System.out.print("Incorrect answer. Try : " + qa.getAnswer() + "\n\n");
