@@ -50,7 +50,7 @@ public class MethodState implements ViewState {
 
         JButton workshopButton = new JButton("Workshop");
         workshopButton.addActionListener((actionEvent) ->{
-            //viewer.goTo(Viewer.Page.WIP);
+            viewer.goTo(Viewer.Page.WIP);
         });
         this.buttonTemps.add(workshopButton);
 
@@ -82,6 +82,7 @@ public class MethodState implements ViewState {
         JButton difficultyButton = new JButton("Set Difficulty");
         profilbutton.addActionListener((actionEvent) ->{
             viewer.goTo(Viewer.Page.DIFFICULTY);
+
         });
 
         this.buttonTemps.add(difficultyButton);

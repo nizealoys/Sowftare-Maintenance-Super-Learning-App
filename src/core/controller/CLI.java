@@ -1,5 +1,6 @@
 package src.core.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class CLI {
         return controller;
     }
 
-    public void command() {
+    public void command() throws IOException {
         Scanner in = new Scanner(System.in);
 
         while (true) {

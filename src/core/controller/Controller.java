@@ -6,6 +6,8 @@ import src.core.model.CompositeBuilder;
 import src.core.model.Facade;
 import src.core.view.Viewer;
 
+import java.io.IOException;
+
 public class Controller implements ControllerInterface {
 
     private final static Controller instance = new Controller();
@@ -14,7 +16,7 @@ public class Controller implements ControllerInterface {
     private Viewer observer;
     private final Composite composite;
 
-    private Viewer getViewer() {
+    private Viewer getViewer() throws IOException {
         if (this.observer == null) {
             this.observer = new Viewer();
         }
@@ -37,7 +39,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public boolean enableUIView() {
+    public boolean enableUIView() throws IOException {
         getViewer().show();
         logs.addLog("User is Connected" + '\n');
         this.isEnable = true;
@@ -45,7 +47,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public boolean disableUIView() {
+    public boolean disableUIView() throws IOException {
         getViewer().hide();
         logs.addLog("User is users are Disconnected");
         this.isEnable = false;

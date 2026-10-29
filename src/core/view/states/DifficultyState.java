@@ -12,10 +12,8 @@ public class DifficultyState implements ViewState {
     JFrame frame;
     JPanel panel;
     ArrayList<JButton> buttonTemps;
-    Methode current;
-    String courseName;
     JLabel titlePanel = new JLabel("SET DIFFICULTY");
-    Boolean difficultyIsSet = false;
+    //Boolean difficultyIsSet = false;
 
     public DifficultyState(Viewer viewer) {
         this.viewer = viewer;

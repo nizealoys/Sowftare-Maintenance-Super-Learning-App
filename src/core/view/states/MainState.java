@@ -34,7 +34,8 @@ public class MainState implements ViewState {
 
         JButton coinButton = new JButton("Coins");
         coinButton.addActionListener((actionEvent) -> {
-            viewer.goTo(Viewer.Page.COIN);
+            //viewer.goTo(Viewer.Page.COIN);
+            viewer.goTo(Viewer.Page.WIP);
         });
         this.buttonTemps.add(coinButton);
 
@@ -58,16 +59,6 @@ public class MainState implements ViewState {
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);
-
-        // Creation of a button that will be shown dynamically
-        /*
-        this.buttonTemp = new JButton("Dynamic click me");
-        this.buttonTemp.addActionListener((actionEvent) -> {
-            //System.out.println("dynamic click");
-            userInput = "dynamic click";
-            notifyObserver();
-        });
-         */
     }
 
     @Override
