@@ -39,11 +39,13 @@ public class Controller implements ControllerInterface {
 
     @Override
     public boolean enableUIView() throws IOException {
+        //System.out.println(getViewer().show());
         return getViewer().show();
     }
 
     @Override
     public boolean disableUIView() throws IOException {
+        //System.out.println(getViewer().hide());
         return getViewer().hide();
     }
 
