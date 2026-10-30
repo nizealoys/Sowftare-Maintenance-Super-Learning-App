@@ -7,6 +7,7 @@ import src.feature.achievement.AchievementElement;
 import src.feature.course.Course;
 import src.feature.course.CourseContent;
 import src.feature.course.QA;
+import src.feature.difficulty.Difficulty;
 import src.feature.premium.Premium;
 
 public class Facade {
@@ -106,7 +107,6 @@ public class Facade {
                         activationSuccess = false;
                     } else {
                         activationSuccess = feature.activation();
-                        System.out.println(activationSuccess);
                     }
                     if (activationSuccess) {
                         course.addCourse(courseContent);
@@ -178,5 +178,17 @@ public class Facade {
             }
         }
         return true;
+    }
+
+    public void setDifficulty(String courseName, int difficult) {
+        Difficulty difficulty = Difficulty.getInstance();
+
+        if (composite.getFeature(courseName) == null) {
+            logs.addLog("Course not found: " + courseName);
+            return;
+        }
+
+        difficulty.setDifficulty(courseName, difficult);
+        logs.addLog("Difficulty set to: " + difficult + " for course: " + courseName);
     }
 }

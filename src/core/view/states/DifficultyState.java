@@ -23,9 +23,8 @@ public class DifficultyState implements ViewState {
     }
 
     public void choose(int i) {
-        viewer.getState(Viewer.Page.METHOD, MethodState.class).setDifficulty(i);
-        viewer.getState(Viewer.Page.LESSONS, LessonState.class).setDifficulty(i);
-        //viewer.goTo(Viewer.Page.LESSONS);
+        String courseName = viewer.getState(Viewer.Page.METHOD, MethodState.class).getCourseName();
+        viewer.controller.setDifficulty(courseName, i);
         viewer.goTo(Viewer.Page.METHOD);
 
     }

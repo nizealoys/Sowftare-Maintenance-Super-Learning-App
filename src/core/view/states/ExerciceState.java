@@ -56,8 +56,8 @@ public class ExerciceState implements ViewState {
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).infoPanel();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).getData();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).infoPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);
@@ -97,6 +97,7 @@ public class ExerciceState implements ViewState {
         for (JLabel c : this.correction) {
             this.panel.add(c);
         }
+
         this.panel.revalidate();
         this.panel.repaint();
     }

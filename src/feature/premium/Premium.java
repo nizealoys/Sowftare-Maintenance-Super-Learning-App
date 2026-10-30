@@ -25,8 +25,6 @@ public class Premium extends Feature {
     public boolean activation() {
         Course course = Course.getInstance();
 
-        System.out.println("premium activation: ");
-
         course.setOldCourseSlot(course.getCourseSlot());
         course.setCourseSlot(3);
         return super.activation();
@@ -35,8 +33,6 @@ public class Premium extends Feature {
     @Override
     public boolean desactivation() {
         Course course = Course.getInstance();
-
-        System.out.println("premium desactivation: ");
 
         course.setCourseSlot(course.getOldCourseSlot());
         course.setCourseList(new ArrayList<>());

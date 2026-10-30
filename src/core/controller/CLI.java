@@ -121,7 +121,7 @@ public class CLI {
         Difficulty difficulty = (Difficulty) controller.getComposite().getFeature("Difficulty");
 
         System.out.print("\n\nCourse: " + courseName + "\n");
-        System.out.print("Current Difficulty: " + Difficulty.difficulties[difficulty.getDifficulty(courseName)] + "\n");
+        System.out.print("Current Difficulty: " + Difficulty.difficulties.get(difficulty.getDifficulty(courseName)) + "\n");
         System.out.print("Available Options: \n");
         System.out.print("Workshop \n");
         System.out.print("Lessons \n");
@@ -145,11 +145,11 @@ public class CLI {
 
     private void courseDifficulty(Scanner in, String courseName) {
         System.out.print("\n\nCourse: " + courseName + "\n");
-        System.out.print("Current Difficulty: " + Difficulty.getInstance().getDifficultyLevel(courseName) + "\n");
+        System.out.print("Current Difficulty: " + Difficulty.getInstance().getDifficulty(courseName) + "\n");
         System.out.print("Available Difficulty Levels: \n");
-        System.out.print("0: Easy \n");
-        System.out.print("1: Medium \n");
-        System.out.print("2: Hard \n");
+        System.out.print("1: Easy \n");
+        System.out.print("2: Medium \n");
+        System.out.print("3: Hard \n");
         System.out.print("Enter the difficulty level (0, 1, or 2): ");
         System.out.print("Write other things to leave the course difficulty (e.g. Back): ");
 
@@ -157,11 +157,11 @@ public class CLI {
 
         if (Utils.isNum(line)) {
             int newDifficulty = Integer.parseInt(line);
-            if (newDifficulty >= 0 && newDifficulty <= 2) {
+            if (newDifficulty >= 1 && newDifficulty <= 3) {
                 Difficulty.getInstance().setDifficulty(courseName, newDifficulty);
-                System.out.print("Difficulty for " + courseName + " set to " + Difficulty.difficulties[newDifficulty] + "\n");
+                System.out.print("Difficulty for " + courseName + " set to " + Difficulty.difficulties.get(newDifficulty) + "\n");
             } else {
-                System.out.print("Invalid difficulty level. Please enter 0, 1, or 2.\n");
+                System.out.print("Invalid difficulty level. Please enter 1, 2, or 3.\n");
                 courseDifficulty(in, courseName); // Prompt again for valid input
             }
         } else {
@@ -171,16 +171,16 @@ public class CLI {
 
     private void courseLessons(Scanner in, String courseName) {
         CourseContent lesson = (CourseContent) controller.getComposite().getFeature(courseName);
-        int currentDifficultyLevel = Difficulty.getInstance().getDifficultyLevel(courseName);
+        int currentDifficulty = Difficulty.getInstance().getDifficulty(courseName);
         List<Integer> topics = lesson.getQAList().stream()
                 .filter(qa -> qa.getDifficulty()
-                        == currentDifficultyLevel)
+                        == currentDifficulty)
                 .map(QA::getTopic)
                 .distinct()
                 .collect(Collectors.toList());
 
         System.out.print("\n\nCourse: " + courseName + " Lessons \n");
-        System.out.print("Current Difficulty: " + Difficulty.difficulties[currentDifficultyLevel - 1] + "\n");
+        System.out.print("Current Difficulty: " + Difficulty.difficulties.get(currentDifficulty) + "\n");
         System.out.print("Available Lessons: \n");
         for (int i = 0; i < topics.size(); i++) {
             System.out.print("Topic " + topics.get(i) + "\n");
@@ -200,7 +200,7 @@ public class CLI {
         List<QA> qaList = lesson.getQAList().stream()
                 .filter(q -> q.getTopic() == topic
                         && q.getDifficulty()
-                        == Difficulty.getInstance().getDifficultyLevel(lesson.getName()))
+                        == Difficulty.getInstance().getDifficulty(lesson.getName()))
                 .collect(Collectors.toList());
 
         System.out.print("\n\nType 'Back' to return to the course lessons: \n");

@@ -43,7 +43,7 @@ public class Course extends Feature {
 
     public void addCourse(Feature course) {
         this.courseList.add(course);
-        Difficulty.getInstance().setDifficulty(course.getName(), 0);
+        Difficulty.getInstance().setDifficulty(course.getName(), 1);
     }
 
     public void removeCourse(Feature course) {

@@ -6,7 +6,6 @@ import src.core.model.Composite;
 import src.core.model.CompositeBuilder;
 import src.core.model.Facade;
 import src.core.view.Viewer;
-import src.feature.course.CourseContent;
 import src.feature.course.QA;
 
 public class Controller implements ControllerInterface {
@@ -68,6 +67,10 @@ public class Controller implements ControllerInterface {
 
     public void completeQA(QA qa) {
         facade.completeQA(qa);
+    }
+
+    public void setDifficulty(String courseName, int difficulty) {
+        facade.setDifficulty(courseName, difficulty);
     }
 
 }

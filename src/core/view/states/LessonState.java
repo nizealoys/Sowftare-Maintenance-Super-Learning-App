@@ -1,12 +1,12 @@
 package src.core.view.states;
 
+import java.util.ArrayList;
+import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
 import src.feature.course.QA;
 import src.feature.course.subfeature.method.Methode;
-
-import javax.swing.*;
-import java.util.ArrayList;
+import src.feature.difficulty.Difficulty;
 
 public class LessonState implements ViewState {
 
@@ -17,9 +17,9 @@ public class LessonState implements ViewState {
     Methode current;
     String courseName;
     JLabel titlePanel = new JLabel();
-    ArrayList<Integer> topic_verificator = new ArrayList<Integer>();
+    ArrayList<Integer> topic_verificator = new ArrayList<>();
     ArrayList<JButton> topicButtons = new ArrayList<>();
-    int difficulty;
+    // int difficulty;
 
     public LessonState(Viewer viewer) {
         this.viewer = viewer;
@@ -40,19 +40,19 @@ public class LessonState implements ViewState {
         this.titlePanel.setText(name + " lessons");
     }
 
-    public void setDifficulty(int i) {
-        this.difficulty = i;
-        this.topicButtons = new ArrayList<>();
-        this.topic_verificator.clear();
-        if (this.current != null) {
-            setButtons();
-        }
-    }
-
-    public ArrayList<QA> getQA(int i, ArrayList<QA> all) {
+    // public void setDifficulty(int i) {
+    //     this.difficulty = i;
+    //     this.topicButtons = new ArrayList<>();
+    //     this.topic_verificator.clear();
+    //     if (this.current != null) {
+    //         setButtons();
+    //     }
+    // }
+    public ArrayList<QA> getQA(int i, ArrayList<QA> all, int difficulty) {
         ArrayList<QA> result = new ArrayList<>();
+
         for (QA question : all) {
-            if (question.getTopic() == i && question.getDifficulty() == this.difficulty) {
+            if (question.getTopic() == i && question.getDifficulty() == difficulty) {
                 result.add(question);
             }
         }
@@ -60,10 +60,12 @@ public class LessonState implements ViewState {
     }
 
     public void setButtons() {
+        int difficulty = Difficulty.getInstance().getDifficulty(courseName);
+
         for (QA topic : current.getQAList()) {
-            if (!topic_verificator.contains(topic.getTopic()) && topic.getDifficulty() == this.difficulty) {
+            if (!topic_verificator.contains(topic.getTopic()) && topic.getDifficulty() == difficulty) {
                 JButton topicbutton = new JButton("Topic" + topic.getTopic());
-                ArrayList<QA> QA = getQA(topic.getTopic(), current.getQAList());
+                ArrayList<QA> QA = getQA(topic.getTopic(), current.getQAList(), difficulty);
                 topicbutton.addActionListener((actionEvent) -> {
                     viewer.getState(Viewer.Page.TOPIC, TopicState.class).setData(topic.getExplanation(), QA);
                     viewer.getState(Viewer.Page.TOPIC, TopicState.class).setName("Topic" + topic.getTopic());
@@ -87,8 +89,8 @@ public class LessonState implements ViewState {
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).infoPanel();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).getData();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).infoPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);

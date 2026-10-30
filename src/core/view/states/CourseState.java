@@ -68,8 +68,6 @@ public class CourseState implements ViewState {
         }
         this.availableCourse = course.getCourseList();
         this.courseSlot = course.getCourseSlot();
-        System.out.print(this.availableCourse + "\n");
-        System.out.print(this.courseSlot + "\n");
     }
 
     public void accessToCourse(String courseName) {
@@ -121,8 +119,8 @@ public class CourseState implements ViewState {
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).infoPanel();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).getData();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).infoPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);

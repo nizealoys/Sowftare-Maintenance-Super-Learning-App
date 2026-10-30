@@ -41,7 +41,7 @@ public final class Viewer {
         //this.frame.setSize(200, 200);
         //this.frame.setVisible(true); // show the window
         //Composite c = controller.getComposite();
-        System.out.println("\n controller = " + controller);
+        // System.out.println("\n controller = " + controller);
         // Thread.dumpStack();
         this.InitAllStates();
         this.goTo(Page.MAIN);
@@ -87,7 +87,7 @@ public final class Viewer {
     }
 
     public boolean show() {
-        if (frame.isVisible()){
+        if (frame.isVisible()) {
             return false;
         }
         SwingUtilities.invokeLater(() -> frame.setVisible(true));
@@ -95,7 +95,7 @@ public final class Viewer {
     }
 
     public boolean hide() {
-        if (!frame.isVisible()){
+        if (!frame.isVisible()) {
             return false;
         }
         SwingUtilities.invokeLater(() -> frame.setVisible(false));

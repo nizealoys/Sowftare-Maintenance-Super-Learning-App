@@ -39,7 +39,6 @@ public class ShopState implements ViewState {
             System.err.println("premium introuvable");
             return null;
         }
-        System.out.print(premium.isActive());
         return premium.isActive();
     }
 

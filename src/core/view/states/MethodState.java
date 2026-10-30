@@ -1,11 +1,11 @@
 package src.core.view.states;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.*;
 import src.core.view.ViewState;
 import src.core.view.Viewer;
 import src.feature.course.subfeature.method.Methode;
+import src.feature.difficulty.Difficulty;
 
 public class MethodState implements ViewState {
 
@@ -16,7 +16,6 @@ public class MethodState implements ViewState {
     Methode current;
     String courseName;
     JLabel titlePanel = new JLabel();
-    HashMap<String, Integer> difficulties = new HashMap<>();
 
     public MethodState(Viewer viewer) {
         this.viewer = viewer;
@@ -35,8 +34,8 @@ public class MethodState implements ViewState {
         this.titlePanel.setText(name);
     }
 
-    public void setDifficulty(int d) {
-        this.difficulties.put(this.courseName, d);
+    public String getCourseName() {
+        return this.courseName;
     }
 
     private void build() {
@@ -49,11 +48,10 @@ public class MethodState implements ViewState {
         this.buttonTemps.add(main);
 
         JButton workshopButton = new JButton("Workshop");
-        workshopButton.addActionListener((actionEvent) ->{
+        workshopButton.addActionListener((actionEvent) -> {
             viewer.goTo(Viewer.Page.WIP);
         });
         this.buttonTemps.add(workshopButton);
-
 
         JButton lessons = new JButton("Lessons");
         lessons.addActionListener((actionEvent) -> {
@@ -61,29 +59,30 @@ public class MethodState implements ViewState {
             LessonState ls = viewer.getState(Viewer.Page.LESSONS, LessonState.class);
             ls.setData(this.current);
             ls.setName(this.courseName);
+            ls.setButtons();
             //WARNING!!! Ne Pas SUPPRIMER WARNING!!!
             //if (this.difficulties.get(this.courseName) != null) {
-                ls.setDifficulty(this.difficulties.get(this.courseName));
-                viewer.goTo(Viewer.Page.LESSONS);
+            viewer.goTo(Viewer.Page.LESSONS);
             //} else {
-                //viewer.goTo(Viewer.Page.DIFFICULTY);
+            //viewer.goTo(Viewer.Page.DIFFICULTY);
             //}
         });
         this.buttonTemps.add(lessons);
 
         JButton difficultyButton = new JButton("Set Difficulty");
-        difficultyButton.addActionListener((actionEvent) ->{
+        difficultyButton.addActionListener((actionEvent) -> {
             viewer.goTo(Viewer.Page.DIFFICULTY);
         });
         this.buttonTemps.add(difficultyButton);
 
         JButton profilbutton = new JButton("User Profile");
         profilbutton.addActionListener((actionEvent) -> {
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).getData();
-            viewer.getState(Viewer.Page.PROFILE, src.core.view.states.ProfileState.class).infoPanel();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).getData();
+            viewer.getState(Viewer.Page.PROFILE, ProfileState.class).infoPanel();
             viewer.goTo(Viewer.Page.PROFILE);
         });
         this.buttonTemps.add(profilbutton);
+
     }
 
     @Override
@@ -92,6 +91,8 @@ public class MethodState implements ViewState {
         for (JButton b : this.buttonTemps) {
             this.panel.add(b);
         }
+
+        panel.add(new JLabel("Difficulty: " + Difficulty.getInstance().getDifficulty(this.courseName)));
         this.frame.repaint();
         this.frame.revalidate();
     }

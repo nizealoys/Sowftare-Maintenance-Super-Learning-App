@@ -67,11 +67,10 @@ public class ProfileState implements ViewState {
 
         content.add(new JLabel("Achievement: "));
         for (AchievementElement ae : this.achievements) {
-            if(ae.isAchieved()){
+            if (ae.isAchieved()) {
                 JLabel ach = new JLabel(ae.getName() + " : " + ae.getDescription() + " : " + "ACHIEVED");
                 content.add(ach);
-            }
-            else{
+            } else {
                 JLabel ach = new JLabel(ae.getName() + " : " + ae.getDescription() + " : " + "NOT ACHIEVED");
                 ach.setForeground(Color.GRAY);
                 content.add(ach);
