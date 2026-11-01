@@ -33,36 +33,29 @@ public class Feature {
     }
 
      */
-
     public String getName() {
         return this.name;
     }
-
 
     public boolean isMandatory() {
         return this.mandatory;
     }
 
-
     public boolean isActive() {
         return this.activate;
     }
-
 
     public Feature getParent() {
         return this.parent;
     }
 
-
     public ArrayList<Feature> getChildren() {
         return this.children;
     }
 
-
     public void setParent(Feature Parent) {
         this.parent = Parent;
     }
-
 
     public String getChildrenType() {
         return childrenType.name();
@@ -74,7 +67,6 @@ public class Feature {
         }
         return null;
     }
-
 
     public boolean desactivation() {
 
@@ -104,11 +96,10 @@ public class Feature {
         activate = false;
     }
 
-
     public boolean activation() {
 
         if (activate) {
-            System.out.println("Déjà activé");
+            System.out.println("Déjà activé " + this.getName());
             return false;
         }
 
@@ -143,7 +134,6 @@ public class Feature {
         return true;
     }
 
-
     public void add(Feature child) {
 
         if (child == null) {
@@ -173,7 +163,6 @@ public class Feature {
             child.activation();
         }
     }
-
 
     public String toString() {
         StringBuilder model = new StringBuilder();

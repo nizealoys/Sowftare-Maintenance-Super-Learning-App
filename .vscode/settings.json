@@ -1,0 +1,6 @@
+{
+  "java.project.referencedLibraries": [
+    "~/Document/Sowftare-Maintenance-Super-Learning_App/lib/**/*.jar",
+    "test-lib/**/*.jar"
+  ]
+}

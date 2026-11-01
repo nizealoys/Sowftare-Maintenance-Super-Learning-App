@@ -8,7 +8,7 @@ import src.data.AchievementData;
 
 public class Achievement extends Feature {
 
-    private static final Achievement instance = new Achievement();
+    private final static Achievement instance = new Achievement();
     public ArrayList<AchievementElement> achievementElements;
 
     private Achievement() {
@@ -76,6 +76,15 @@ public class Achievement extends Feature {
     public void setAllAchievementElementsAchieved(boolean achieved) {
         for (AchievementElement element : this.achievementElements) {
             element.setAchieved(achieved);
+        }
+    }
+
+    public void reset() {
+        this.achievementElements.clear();
+        AchievementData data = AchievementData.getInstance();
+        for (HashMap<String, String> elementData : data.getAchievementData()) {
+            AchievementElement element = new AchievementElement(elementData);
+            this.achievementElements.add(element);
         }
     }
 

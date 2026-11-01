@@ -14,4 +14,8 @@ public class Type extends Feature {
     public static Type getInstance() {
         return instance;
     }
+
+    public void reset() {
+    }
+
 }

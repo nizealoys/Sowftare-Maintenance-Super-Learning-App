@@ -34,4 +34,9 @@ public class Methode extends Feature { //modifer le nom
         return this.lessons.getQAList();
     }
 
+    public void reset() {
+        this.lessons = null;
+        this.exercices = null;
+    }
+
 }

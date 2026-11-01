@@ -30,6 +30,12 @@ public class Premium extends Feature {
         return super.activation();
     }
 
+    public void reset() {
+        if (this.isActive()) {
+            this.desactivation();
+        }
+    }
+
     @Override
     public boolean desactivation() {
         Course course = Course.getInstance();

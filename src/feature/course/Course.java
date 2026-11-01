@@ -61,4 +61,10 @@ public class Course extends Feature {
     public int getOldCourseSlot() {
         return oldCourseSlot;
     }
+
+    public void reset() {
+        this.CourseSlot = 1;
+        this.oldCourseSlot = 1;
+        this.courseList.clear();
+    }
 }

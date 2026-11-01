@@ -11,7 +11,7 @@ public class Difficulty extends Feature {
     private final HashMap<String, Integer> difficultyMap;
 
     private Difficulty() {
-        super("Difficulty", false, false, ChildrenType.NONE);
+        super("Difficulty", true, true, ChildrenType.NONE);
         difficultyMap = new HashMap<>();
         difficulties = new HashMap<>();
         difficulties.put(1, "Easy");
@@ -36,5 +36,9 @@ public class Difficulty extends Feature {
 
     public HashMap<String, Integer> getDifficulties() {
         return difficultyMap;
+    }
+
+    public void reset() {
+        difficultyMap.clear();
     }
 }

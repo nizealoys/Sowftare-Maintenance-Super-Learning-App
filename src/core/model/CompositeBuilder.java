@@ -37,6 +37,13 @@ public class CompositeBuilder {
         feature.add(Cooking.getInstance());
     }
 
+    public void reset() {
+        Premium.getInstance().reset();
+        English.getInstance().reset();
+        French.getInstance().reset();
+        Cooking.getInstance().reset();
+    }
+
     public static CompositeBuilder getInstance() {
         return instance;
     }

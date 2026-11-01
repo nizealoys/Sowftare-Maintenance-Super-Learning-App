@@ -3,4 +3,5 @@ cat > .gitignore << 'EOF'
 out/
 *.iml
 **/**.class
+/lib/
 EOF
