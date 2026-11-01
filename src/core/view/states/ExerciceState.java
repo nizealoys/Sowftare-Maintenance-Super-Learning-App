@@ -43,10 +43,9 @@ public class ExerciceState implements ViewState {
         this.titlePanel.setText(name);
     }
 
-    public boolean correction(JTextField answer, QA question) {
-        return answer.getText().trim().equalsIgnoreCase(question.getAnswer().trim());
-    }
-
+    // public boolean correction(JTextField answer, QA question) {
+    //     return answer.getText().trim().equalsIgnoreCase(question.getAnswer().trim());
+    // }
     private void build() {
         JButton main = new JButton("Main Page");
         main.addActionListener((actionEvent) -> {
@@ -66,10 +65,8 @@ public class ExerciceState implements ViewState {
         submit.addActionListener((actionEvent) -> {
             this.correction.clear();
             for (int i = 0; i < this.exercice.size(); i++) {
-                if (!correction(this.fields.get(i), this.exercice.get(i))) {
+                if (!viewer.controller.checkQA(this.exercice.get(i), this.fields.get(i).getText())) {
                     this.correction.add(new JLabel("Correction " + (i + 1) + ": " + this.exercice.get(i).getAnswer()));
-                } else {
-                    viewer.controller.completeQA(this.exercice.get(i));
                 }
             }
             if (this.correction.isEmpty()) {

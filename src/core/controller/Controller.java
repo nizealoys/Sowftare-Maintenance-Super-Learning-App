@@ -67,8 +67,11 @@ public class Controller implements ControllerInterface {
         return this.composite;
     }
 
-    public void completeQA(QA qa) {
-        facade.completeQA(qa);
+    // public void completeQA(QA qa) {
+    //     facade.completeQA(qa);
+    // }
+    public boolean checkQA(QA qa, String answer) {
+        return (facade.checkQA(qa, answer));
     }
 
     public void setDifficulty(String courseName, int difficulty) {

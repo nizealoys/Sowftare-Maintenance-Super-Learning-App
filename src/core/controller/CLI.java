@@ -212,11 +212,10 @@ public class CLI {
                 String line = in.nextLine();
 
                 while (!line.equals("Back")) {
-                    if (!line.equals("Back") && line.equals(qa.getAnswer())) {
+                    if (controller.checkQA(qa, line)) {
                         System.out.print("Correct answer! \n");
-                        controller.completeQA(qa);
                         break;
-                    } else if (!line.equals("Back")) {
+                    } else {
                         System.out.print("Incorrect answer. Try : " + qa.getAnswer() + "\n\n");
                     }
                     line = in.nextLine();

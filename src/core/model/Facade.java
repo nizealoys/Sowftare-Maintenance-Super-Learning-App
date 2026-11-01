@@ -142,7 +142,17 @@ public class Facade {
         return this.composite.getFeature("SuperLearningApp").toString();
     }
 
-    public void completeQA(QA qa) {
+    public boolean checkQA(QA qa, String answer) {
+        if (qa.getAnswer().equals(answer)) {
+            completeQA(qa);
+            return true;
+        } else {
+            logs.addLog("QA failed: " + qa.getQuestion() + " - Provided answer: " + answer);
+            return false;
+        }
+    }
+
+    private void completeQA(QA qa) {
         Achievement achievement = Achievement.getInstance();
         AchievementElement elem = achievement.getAchievementElement("First Steps");
         ArrayList<CourseContent> courseContents = new ArrayList<>();
