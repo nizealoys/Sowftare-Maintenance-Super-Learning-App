@@ -74,8 +74,8 @@ public class Controller implements ControllerInterface {
         return (facade.checkQA(qa, answer));
     }
 
-    public void setDifficulty(String courseName, int difficulty) {
-        facade.setDifficulty(courseName, difficulty);
+    public boolean setDifficulty(String courseName, int difficulty) {
+        return facade.setDifficulty(courseName, difficulty);
     }
 
 }

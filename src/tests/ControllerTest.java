@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import src.core.model.Composite;
+import src.core.model.CompositeBuilder;
 import src.core.model.Feature;
 import src.feature.course.QA;
 import src.feature.difficulty.Difficulty;
@@ -19,10 +20,13 @@ import java.io.IOException;
 public class ControllerTest {
 
     private Controller controller;
+    private CompositeBuilder compositeBuilder;
 
     @Before
     public void setUp() {
+        compositeBuilder = CompositeBuilder.getInstance();
         controller = Controller.getInstance();
+        compositeBuilder.reset();
     }
 
     @Test
@@ -53,9 +57,29 @@ public class ControllerTest {
     }
 
     @Test
+    public void activateAndDeactivateCourseTest() {
+        Feature course = Composite.getInstance().getFeature("Course");
+        Feature english = Composite.getInstance().getFeature("English");
+
+        assertEquals(0, controller.activate(
+                new String[]{},
+                new String[]{"English"}));
+        assertTrue(english.isActive());
+
+        assertEquals(0, controller.activate(
+                new String[]{"English"},
+                new String[]{}));
+        assertFalse(english.isActive());
+
+        assertEquals(-1, controller.activate(
+                new String[]{"Course"},
+                new String[]{}));
+        assertTrue(course.isActive());
+    }
+
+    @Test
     public void activateMandatoryFeatureUnitTest() {
         Feature Course = Composite.getInstance().getFeature("Course");
-        controller.activate(new String[]{"Course"}, new String[]{});
         assertEquals(-1, controller.activate(new String[]{}, new String[]{"Course"}));
         assertTrue(Course.isActive());
 
@@ -121,18 +145,24 @@ public class ControllerTest {
     }
 
     @Test
-    public void completeQACompletesQuestionAndWritesLog() {
+    public void checkQACompletesQuestionAndWritesLog() {
         QA qa = new QA(1, "Explanation", 1, "Question", "Answer");
 
-        controller.completeQA(qa);
+        assertFalse(controller.checkQA(qa, "Wrong Answer"));
+        assertFalse(qa.getIsCompleted());
+
+        assertTrue(controller.logsContains(controller.getStateAsLog(), "QA failed: Question"));
+
+        assertTrue(controller.checkQA(qa, "Answer"));
 
         assertTrue(qa.getIsCompleted());
         assertTrue(controller.logsContains(controller.getStateAsLog(), "QA completed: Question"));
+
     }
 
     @Test
     public void setDifficultyUpdatesCourseDifficultyAndWritesLog() {
-        controller.setDifficulty("English", 3);
+        assertTrue(controller.setDifficulty("English", 3));
 
         assertEquals(3, Difficulty.getInstance().getDifficulty("English"));
         assertTrue(controller.logsContains(controller.getStateAsLog(),
@@ -145,5 +175,10 @@ public class ControllerTest {
 
         assertTrue(controller.logsContains(controller.getStateAsLog(),
                 "Course not found: Unknown course"));
+    }
+
+    @Test
+    public void invalidDifficultyIsRejectedTest() {
+        assertFalse(controller.setDifficulty("English", 4));
     }
 }

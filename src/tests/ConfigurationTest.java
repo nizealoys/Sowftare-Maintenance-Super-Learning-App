@@ -24,6 +24,7 @@ public class ConfigurationTest {
     public void setUp() {
         compositeBuilder = CompositeBuilder.getInstance();
         controller = Controller.getInstance();
+        compositeBuilder.reset();
     }
 
     @Test

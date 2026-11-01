@@ -18,10 +18,4 @@ public class French extends CourseContent {
         return instance;
     }
 
-    public void reset() {
-        if (this.isActive()) {
-            this.desactivation();
-        }
-    }
-
 }

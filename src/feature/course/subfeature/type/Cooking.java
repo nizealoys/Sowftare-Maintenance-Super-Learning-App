@@ -18,10 +18,4 @@ public class Cooking extends CourseContent {
         return instance;
     }
 
-    public void reset() {
-        if (this.isActive()) {
-            this.desactivation();
-        }
-    }
-
 }

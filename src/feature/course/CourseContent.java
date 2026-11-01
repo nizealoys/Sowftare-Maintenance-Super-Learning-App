@@ -46,4 +46,11 @@ public abstract class CourseContent extends Feature {
         }
         return true;
     }
+
+    public void reset() {
+        qaList.forEach(qa -> qa.setIsCompleted(false));
+        if (this.isActive()) {
+            this.desactivation();
+        }
+    }
 }

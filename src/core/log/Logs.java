@@ -27,4 +27,8 @@ public class Logs {
         }
         return logArray;
     }
+
+    public void reset() {
+        logs.clear();
+    }
 }

@@ -1,5 +1,6 @@
 package src.core.model;
 
+import src.core.log.Logs;
 import src.feature.achievement.Achievement;
 import src.feature.course.Course;
 import src.feature.course.subfeature.method.Methode;
@@ -42,6 +43,10 @@ public class CompositeBuilder {
         English.getInstance().reset();
         French.getInstance().reset();
         Cooking.getInstance().reset();
+        Course.getInstance().reset();
+        Achievement.getInstance().reset();
+        Difficulty.getInstance().reset();
+        Logs.getInstance().reset();
     }
 
     public static CompositeBuilder getInstance() {

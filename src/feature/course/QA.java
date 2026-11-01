@@ -20,6 +20,15 @@ public class QA {
         this.isCompleted = false;
     }
 
+    public QA(String Question, String Answer) {
+        this.topic = 0;
+        this.topicExplanation = "";
+        this.difficulty = 0;
+        this.question = Question;
+        this.answer = Answer;
+        this.isCompleted = false;
+    }
+
     public QA(HashMap<String, String> data) {
         this.topic = Integer.parseInt(data.get("topic"));
         this.topicExplanation = data.get("topicExplanation");

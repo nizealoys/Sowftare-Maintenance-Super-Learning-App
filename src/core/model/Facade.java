@@ -40,14 +40,19 @@ public class Facade {
         activationFailedActivations = activation(activations);
 
         if (desativationFailedActivations.isEmpty() && activationFailedActivations.isEmpty()) {
+            // All activations and deactivations were successful
             return 0;
         } else if (desativationFailedActivations.size() == deactivations.length && activationFailedActivations.size() == activations.length) {
+            // All activations and deactivations failed
             return -1;
         } else if (!desativationFailedActivations.isEmpty() && !activationFailedActivations.isEmpty()) {
+            // Some activations and deactivations failed
             return 1;
         } else if (!desativationFailedActivations.isEmpty()) {
+            // Some deactivations failed
             return 2;
         } else {
+            // Some activations failed
             return 3;
         }
     }
@@ -190,15 +195,21 @@ public class Facade {
         return true;
     }
 
-    public void setDifficulty(String courseName, int difficult) {
+    public boolean setDifficulty(String courseName, int difficult) {
         Difficulty difficulty = Difficulty.getInstance();
 
         if (composite.getFeature(courseName) == null) {
             logs.addLog("Course not found: " + courseName);
-            return;
+            return false;
+        }
+
+        if (difficult < 1 || difficult > 3) {
+            logs.addLog("Invalid difficulty: " + difficult + " for course: " + courseName);
+            return false;
         }
 
         difficulty.setDifficulty(courseName, difficult);
         logs.addLog("Difficulty set to: " + difficult + " for course: " + courseName);
+        return true;
     }
 }
